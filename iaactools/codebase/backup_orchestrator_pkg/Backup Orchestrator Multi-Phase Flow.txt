@@ -1,0 +1,52 @@
+┌──────────────────────────────────────────────────────────────────────────┐
+│                  IaaC Tools — Backup Orchestrator Flow                   │
+├──────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  [Phase 0] DISCOVERY & ARCHITECTURE MANIFEST                             │
+│  ──────────────────────────────────────────                              │
+│   • Enumerates all regions, instances, volumes                           │
+│   • Writes per-region JSON sections                                      │
+│   • Aggregates + signs unified manifest (KMS optional)                   │
+│   • Output: /artifacts/run_<id>/architecture_manifest_<id>.json          │
+│                                                                          │
+│      │                                                                  │
+│      ▼                                                                  │
+│  [Phase 1] INITIALIZATION & VERIFICATION                                 │
+│  ───────────────────────────────────────                                 │
+│   • Validates AWS credentials + S3 reachability                          │
+│   • Loads & verifies signed manifest integrity                           │
+│   • Extracts inventories (instances + volumes)                           │
+│   • Output: /results/.../phase1_init.json                                │
+│                                                                          │
+│      │                                                                  │
+│      ▼                                                                  │
+│  [Phase 2] VOLUME VALIDATION                                             │
+│  ───────────────────────────                                             │
+│   • Reads inventories from Phase 1                                       │
+│   • Performs sanity checks on volumes                                   │
+│   • Output: volumes_<region>.json per region                             │
+│                                                                          │
+│      │                                                                  │
+│      ▼                                                                  │
+│  [Phase 3] SNAPSHOT CREATION                                             │
+│  ───────────────────────────                                             │
+│   • Reads validated volumes                                              │
+│   • Creates (or simulates) EBS snapshots                                 │
+│   • Output: snapshots_<region>.json per region                           │
+│                                                                          │
+│      │                                                                  │
+│      ▼                                                                  │
+│  [Phase 4] MANIFEST CONSOLIDATION                                        │
+│  ──────────────────────────────                                          │
+│   • Aggregates inventories + snapshots                                  │
+│   • Generates unified backup_manifest_<run-id>.json                      │
+│   • Output: phase4_manifest.json (integrity record)                      │
+│                                                                          │
+│      │                                                                  │
+│      ▼                                                                  │
+│  [Phase 5] S3 UPLOAD & AUDIT CLOSURE                                    │
+│  ─────────────────────────────────────                                  │
+│   • Uploads manifest + integrity record to S3                            │
+│   • Generates final phase5_upload.json summary                           │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘

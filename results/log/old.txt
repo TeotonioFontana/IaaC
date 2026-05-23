@@ -1,0 +1,169 @@
+ ===============================================================================
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |  IaacTools Backup Orchestrator — Execution Context
+2025-11-08 22:59:54 | backup_orchestrator | INFO     | -------------------------------------------------------------------------------
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |   Profile ........: architect
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |   Region .........: us-east-2
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |   Simulation .....: True
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |   Run ID .........: 20251109_015954
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |   Config file ....: /Users/teotonio/Projetos/IaaC/iaactools/codebase/conf/orchestrator/orchestrator-simulate.yaml
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |   Log file .......: /Users/teotonio/Projetos/IaaC/results/simulate/audit.log
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |   Manifest file ..: /Users/teotonio/Projetos/IaaC/results/simulate/manifest_20251109_015954.json
+2025-11-08 22:59:54 | backup_orchestrator | INFO     | ===============================================================================
+2025-11-08 22:59:54 | backup_orchestrator | INFO     | [CONFIG] LOADED
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |     Path : /Users/teotonio/Projetos/IaaC/iaactools/codebase/conf/orchestrator/orchestrator-simulate.yaml
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |     Keys :
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - _config_path
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - backup_type
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - dry_run
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - ebs_backup
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - home_region
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - keep_going
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - log_dir
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - log_level
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - preview
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - profile
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - region
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - s3_upload
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |        - simulate
+2025-11-08 22:59:54 | backup_orchestrator | INFO     |  PHASE0 — STARTING GLOBAL AWS ENVIRONMENT DISCOVERY
+2025-11-08 22:59:54 | backup_orchestrator | INFO     | ──────────────────────────────────────────────────────────────────────
+2025-11-08 22:59:55 | backup_orchestrator | INFO     | [🌎] Multi-Region Discovery — scanning 17 regions
+2025-11-08 22:59:59 | backup_orchestrator | INFO     | [✔] 0.1 AccountIdentity — Account=212533511020 Regions=17 IAM_Users=4 Roles=20
+2025-11-08 23:00:26 | backup_orchestrator | INFO     | ─── Region: ap-south-1 — STORAGE
+2025-11-08 23:00:26 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:00:26 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=3 SGs=1
+2025-11-08 23:00:26 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:00:26 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:00:26 | backup_orchestrator | INFO     |    └─ Elapsed: 26.43s
+2025-11-08 23:00:42 | backup_orchestrator | INFO     | ─── Region: ca-central-1 — STORAGE
+2025-11-08 23:00:42 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:00:42 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=3 SGs=1
+2025-11-08 23:00:42 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:00:42 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:00:42 | backup_orchestrator | INFO     |    └─ Elapsed: 15.78s
+2025-11-08 23:01:03 | backup_orchestrator | INFO     | ─── Region: eu-central-1 — STORAGE
+2025-11-08 23:01:03 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:01:03 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=3 SGs=1
+2025-11-08 23:01:03 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:01:03 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:01:03 | backup_orchestrator | INFO     |    └─ Elapsed: 21.30s
+2025-11-08 23:01:20 | backup_orchestrator | INFO     | ─── Region: us-west-1 — STORAGE
+2025-11-08 23:01:20 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:01:20 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=2 SGs=1
+2025-11-08 23:01:20 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:01:20 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:01:20 | backup_orchestrator | INFO     |    └─ Elapsed: 17.43s
+2025-11-08 23:01:38 | backup_orchestrator | INFO     | ─── Region: us-west-2 — STORAGE
+2025-11-08 23:01:38 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:01:38 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=4 SGs=1
+2025-11-08 23:01:38 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:01:38 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:01:38 | backup_orchestrator | INFO     |    └─ Elapsed: 17.68s
+2025-11-08 23:01:59 | backup_orchestrator | INFO     | ─── Region: eu-north-1 — STORAGE
+2025-11-08 23:01:59 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:01:59 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=3 SGs=1
+2025-11-08 23:01:59 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:01:59 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:01:59 | backup_orchestrator | INFO     |    └─ Elapsed: 20.91s
+2025-11-08 23:02:18 | backup_orchestrator | INFO     | ─── Region: eu-west-3 — STORAGE
+2025-11-08 23:02:18 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:02:18 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=3 SGs=1
+2025-11-08 23:02:18 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:02:18 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:02:18 | backup_orchestrator | INFO     |    └─ Elapsed: 19.44s
+2025-11-08 23:02:36 | backup_orchestrator | INFO     | ─── Region: eu-west-2 — STORAGE
+2025-11-08 23:02:36 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:02:36 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=3 SGs=1
+2025-11-08 23:02:36 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:02:36 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:02:36 | backup_orchestrator | INFO     |    └─ Elapsed: 17.55s
+2025-11-08 23:02:54 | backup_orchestrator | INFO     | ─── Region: eu-west-1 — STORAGE
+2025-11-08 23:02:54 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:02:54 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=3 SGs=1
+2025-11-08 23:02:54 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:02:54 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:02:54 | backup_orchestrator | INFO     |    └─ Elapsed: 18.09s
+2025-11-08 23:03:18 | backup_orchestrator | INFO     | ─── Region: ap-northeast-3 — STORAGE
+2025-11-08 23:03:18 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:03:18 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=3 SGs=1
+2025-11-08 23:03:18 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:03:18 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:03:18 | backup_orchestrator | INFO     |    └─ Elapsed: 23.78s
+2025-11-08 23:03:45 | backup_orchestrator | INFO     | ─── Region: ap-northeast-2 — STORAGE
+2025-11-08 23:03:45 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:03:45 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=4 SGs=1
+2025-11-08 23:03:45 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:03:45 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:03:45 | backup_orchestrator | INFO     |    └─ Elapsed: 27.08s
+2025-11-08 23:04:11 | backup_orchestrator | INFO     | ─── Region: ap-northeast-1 — STORAGE
+2025-11-08 23:04:11 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:04:11 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=3 SGs=1
+2025-11-08 23:04:11 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:04:11 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:04:11 | backup_orchestrator | INFO     |    └─ Elapsed: 26.08s
+2025-11-08 23:04:20 | backup_orchestrator | INFO     | ─── Region: sa-east-1 — STORAGE
+2025-11-08 23:04:20 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:04:20 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=3 SGs=1
+2025-11-08 23:04:20 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:04:20 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:04:20 | backup_orchestrator | INFO     |    └─ Elapsed: 9.16s
+2025-11-08 23:04:48 | backup_orchestrator | INFO     | ─── Region: ap-southeast-1 — STORAGE
+2025-11-08 23:04:48 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:04:48 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=3 SGs=1
+2025-11-08 23:04:48 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:04:48 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:04:48 | backup_orchestrator | INFO     |    └─ Elapsed: 27.47s
+2025-11-08 23:05:14 | backup_orchestrator | INFO     | ─── Region: ap-southeast-2 — STORAGE
+2025-11-08 23:05:14 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=0 Failed=0
+2025-11-08 23:05:14 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=3 SGs=1
+2025-11-08 23:05:14 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=0 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:05:14 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=0 RDS=0 EFS=0 Snapshots=0
+2025-11-08 23:05:14 | backup_orchestrator | INFO     |    └─ Elapsed: 26.62s
+2025-11-08 23:05:30 | backup_orchestrator | INFO     | ─── Region: us-east-1 — ACTIVE
+2025-11-08 23:05:30 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=2 Failed=0
+2025-11-08 23:05:30 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=2 Subnets=7 SGs=3
+2025-11-08 23:05:30 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=1 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:05:30 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=2 RDS=0 EFS=0 Snapshots=118
+2025-11-08 23:05:30 | backup_orchestrator | INFO     |    └─ Elapsed: 15.26s
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | ─── Region: us-east-2 — ACTIVE
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | [✔] 0.2 CloudFormation — Stacks=4 Failed=2
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | [✔] 0.3 Networking — VPCs=1 Subnets=2 SGs=12
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | [✔] 0.4 Compute — EC2=9 ASG=0 ELB=0 ECS=0 Lambda=0 ECR=0
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | [✔] 0.5 Storage — S3=4 RDS=0 EFS=0 Snapshots=272
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |    └─ Elapsed: 20.35s
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | [✔] Multi-Region Discovery completed — 17 regions (2 active, 15 storage, 0 inactive).
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | ========================================================================
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |  Multi-Region Summary by Region
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | ------------------------------------------------------------------------
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   Region                    │ Status     │ Elapsed (s)
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | ------------------------------------------------------------------------
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   ap-south-1               │ STORAGE   │    26.43
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   ca-central-1             │ STORAGE   │    15.78
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   eu-central-1             │ STORAGE   │    21.30
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   us-west-1                │ STORAGE   │    17.43
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   us-west-2                │ STORAGE   │    17.68
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   eu-north-1               │ STORAGE   │    20.91
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   eu-west-3                │ STORAGE   │    19.44
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   eu-west-2                │ STORAGE   │    17.55
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   eu-west-1                │ STORAGE   │    18.09
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   ap-northeast-3           │ STORAGE   │    23.78
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   ap-northeast-2           │ STORAGE   │    27.08
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   ap-northeast-1           │ STORAGE   │    26.08
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   sa-east-1                │ STORAGE   │     9.16
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   ap-southeast-1           │ STORAGE   │    27.47
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   ap-southeast-2           │ STORAGE   │    26.62
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   us-east-1                │ ACTIVE    │    15.26
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |   us-east-2                │ ACTIVE    │    20.35
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | ------------------------------------------------------------------------
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | Total Regions=17 | Active=2 | Storage=15 | Inactive=0 | Elapsed=355.84s
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | ========================================================================
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | === Phase 0 Completed — Total Elapsed=355.84s ===
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | [✔] Phase AccountDiscovery: SUCCESS
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |         • Regions ............:  17
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |         • CloudFormation .....:   0 stacks
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |         • Networking .........:   0 VPCs,   0 subnets,   0 SGs
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |         • Compute ............:  10 EC2,   0 Lambda,   0 ECS,   0 ECR
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |         • Storage & Backup ...:   6 S3,   0 RDS,   0 EFS,   0 Snapshots
+2025-11-08 23:05:50 | backup_orchestrator | INFO     |         • IAM ................:   4 users,  20 roles,   4 groups,   3 policies
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | ----------------------------------------------------------------------
+2025-11-08 23:05:50 | backup_orchestrator | INFO     | Phase 0 completed successfully in 355.84 seconds.

@@ -1,0 +1,22 @@
+============================================================
+ CODEBASE AUDIT REPORT — v1.0.4
+============================================================
+
+[1] MISPLACED FILES (outside expected package hierarchy)
+------------------------------------------------------------
+/Users/teotonio/Projetos/IaaC/iaactools/codebase/codebase_audit_report.txt
+
+[2] ORPHAN FILES (code/scripts not under a package)
+------------------------------------------------------------
+/Users/teotonio/Projetos/IaaC/iaactools/codebase/s3_copy_bucket.py
+/Users/teotonio/Projetos/IaaC/iaactools/codebase/__init__.py
+/Users/teotonio/Projetos/IaaC/iaactools/codebase/recovery.md
+/Users/teotonio/Projetos/IaaC/iaactools/codebase/sso_assignments_exporter.py
+
+[3] REDUNDANT FILES (archives, backups, DS_Store)
+------------------------------------------------------------
+/Users/teotonio/Projetos/IaaC/iaactools/codebase/.DS_Store
+/Users/teotonio/Projetos/IaaC/iaactools/codebase/backup_orchestrator_pkg.zip
+/Users/teotonio/Projetos/IaaC/iaactools/codebase/backup_orchestrator.zip
+/Users/teotonio/Projetos/IaaC/iaactools/codebase/recovery_audit_pkg/.DS_Store
+/Users/teotonio/Projetos/IaaC/iaactools/codebase/recovery_orchestrator/Archive.zip

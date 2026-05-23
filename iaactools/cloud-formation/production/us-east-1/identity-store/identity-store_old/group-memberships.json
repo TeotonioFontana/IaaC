@@ -1,0 +1,74 @@
+[
+  {
+    "IdentityStoreId": "d-9a671b8524",
+    "MembershipId": "a1fb35a0-20d1-70b6-6a56-0eb992291a56",
+    "GroupId": "31fbc530-a0c1-7025-acf1-f85df0581ce8",
+    "MemberId": {
+      "UserId": "31dbf5c0-4061-70e0-6287-c268fed6cd75"
+    }
+  },
+  {
+    "IdentityStoreId": "d-9a671b8524",
+    "MembershipId": "e12be5d0-b071-7042-2d1b-9e343f70cc53",
+    "GroupId": "611b05e0-60a1-7034-ec5b-83d84328eb0f",
+    "MemberId": {
+      "UserId": "e1cb05e0-b0c1-70e8-19d5-ca29bb7f3e16"
+    }
+  },
+  {
+    "IdentityStoreId": "d-9a671b8524",
+    "MembershipId": "d16b1570-10b1-7029-5aff-df593193a302",
+    "GroupId": "611b05e0-60a1-7034-ec5b-83d84328eb0f",
+    "MemberId": {
+      "UserId": "710b65e0-1011-7025-8b35-d256a8b16234"
+    }
+  },
+  {
+    "IdentityStoreId": "d-9a671b8524",
+    "MembershipId": "c1cba5c0-4021-7011-dd01-91a74fecbaee",
+    "GroupId": "611b05e0-60a1-7034-ec5b-83d84328eb0f",
+    "MemberId": {
+      "UserId": "31dbf5c0-4061-70e0-6287-c268fed6cd75"
+    }
+  },
+  {
+    "IdentityStoreId": "d-9a671b8524",
+    "MembershipId": "815ba570-8041-7033-86b3-5a1573056edc",
+    "GroupId": "811bc570-7051-70dd-92ab-2e5afb81cc50",
+    "MemberId": {
+      "UserId": "51eb0520-1081-70eb-0404-4b0278f4470c"
+    }
+  },
+  {
+    "IdentityStoreId": "d-9a671b8524",
+    "MembershipId": "615bc580-b071-70d2-0988-3025f7c77203",
+    "GroupId": "811bc570-7051-70dd-92ab-2e5afb81cc50",
+    "MemberId": {
+      "UserId": "e1cb05e0-b0c1-70e8-19d5-ca29bb7f3e16"
+    }
+  },
+  {
+    "IdentityStoreId": "d-9a671b8524",
+    "MembershipId": "11cb45f0-4021-70b6-3ac9-a90ca06aee2c",
+    "GroupId": "a18b05b0-3061-70b0-3292-93953d80d0bb",
+    "MemberId": {
+      "UserId": "e1cb05e0-b0c1-70e8-19d5-ca29bb7f3e16"
+    }
+  },
+  {
+    "IdentityStoreId": "d-9a671b8524",
+    "MembershipId": "d1db15c0-9001-7059-9b39-385392c1e302",
+    "GroupId": "a18b05b0-3061-70b0-3292-93953d80d0bb",
+    "MemberId": {
+      "UserId": "51eb0520-1081-70eb-0404-4b0278f4470c"
+    }
+  },
+  {
+    "IdentityStoreId": "d-9a671b8524",
+    "MembershipId": "f1cb45b0-4041-702a-3e7d-d02241bd0de1",
+    "GroupId": "a18b05b0-3061-70b0-3292-93953d80d0bb",
+    "MemberId": {
+      "UserId": "31dbf5c0-4061-70e0-6287-c268fed6cd75"
+    }
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "AccountId": "212533511020",
+  "Items": [
+    {
+      "PermissionSetArn": "arn:aws:sso:::permissionSet/ssoins-6684b776b34e737d/ps-d40740904281e333",
+      "File": "Architect-us1-RegionLocked__9bd09d47.json"
+    }
+  ]
+}

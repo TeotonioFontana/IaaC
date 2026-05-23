@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OrganizationsManifest",
+  "type": "object",
+  "required": ["OrganizationId", "MasterAccount", "ChildAccounts", "Policies"],
+  "properties": {
+    "OrganizationId": { "type": "string", "pattern": "^o-[a-z0-9]{10,}$" },
+    "MasterAccount": { "type": "string", "pattern": "^\\d{12}$" },
+    "ChildAccounts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["Id", "Name"],
+        "properties": {
+          "Id": { "type": "string", "pattern": "^\\d{12}$" },
+          "Name": { "type": "string" },
+          "Status": { "type": "string", "enum": ["ACTIVE", "SUSPENDED"] }
+        }
+      }
+    },
+    "Policies": {
+      "type": "object",
+      "properties": {
+        "BackupPolicy": { "type": "string" },
+        "SCPs": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Version": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

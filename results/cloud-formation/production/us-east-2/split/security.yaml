@@ -1,0 +1,521 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Layer: security'
+Parameters: {}
+Mappings: {}
+Resources:
+  Webserverpublicsg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: access to ws
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: webServerPublic
+      GroupName: ws-sg
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 8157
+        ToPort: 8157
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8080
+        ToPort: 8080
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 995
+        ToPort: 995
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: icmpv6
+        FromPort: -1
+        ToPort: -1
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 143
+        ToPort: 143
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8006
+        ToPort: 8006
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: icmp
+        FromPort: -1
+        ToPort: -1
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8051
+        ToPort: 8054
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 110
+        ToPort: 110
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 21
+        ToPort: 21
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 25
+        ToPort: 25
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8002
+        ToPort: 8002
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8005
+        ToPort: 8005
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8001
+        ToPort: 8001
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8004
+        ToPort: 8004
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8191
+        ToPort: 8191
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8056
+        ToPort: 8056
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8156
+        ToPort: 8156
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 465
+        ToPort: 465
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 443
+        ToPort: 443
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8000
+        ToPort: 8000
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 993
+        ToPort: 993
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8003
+        ToPort: 8003
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8100
+        ToPort: 8102
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8010
+        ToPort: 8010
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8158
+        ToPort: 8158
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  Lixosg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: MQL access on private net
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: lixo
+      GroupName: mySQLpriv-2
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 1433
+        ToPort: 1433
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: tcp
+        FromPort: 3307
+        ToPort: 3307
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: tcp
+        FromPort: 3306
+        ToPort: 3306
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: icmp
+        FromPort: -1
+        ToPort: -1
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: null
+        IpRanges:
+        - CidrIp: 0.0.0.0/0
+        - CidrIp: 0.0.0.0/16
+  ApiServerssg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: allow access from ssh and from web servers on port 8100
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: api-servers
+      GroupName: api-servers
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 10.0.0.153/32
+      - IpProtocol: tcp
+        FromPort: 8100
+        ToPort: 8100
+        CidrIp: null
+        IpRanges:
+        - CidrIp: 10.0.0.124/32
+        - CidrIp: 10.0.0.153/32
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 0
+        ToPort: 0
+        CidrIp: 0.0.0.0/16
+  HelperSgsg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security group for the helper instance
+      VpcId:
+        Ref: Thingsbrainvpc
+      GroupName: helper-sg
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  Lixosg2:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: default VPC security group
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: lixo
+      GroupName: default
+      SecurityGroupIngress:
+      - IpProtocol: '-1'
+        SourceSecurityGroupId: sg-0f139b898b1f42a46
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  Lixosg3:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Public access to mysql
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: lixo
+      GroupName: mySQL-pub
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 1433
+        ToPort: 1433
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 3307
+        ToPort: 3307
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 3306
+        ToPort: 3306
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: icmp
+        FromPort: -1
+        ToPort: -1
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: null
+        IpRanges:
+        - CidrIp: 0.0.0.0/0
+        - CidrIp: 0.0.0.0/16
+  Lixosg4:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: public acess for webserver 2
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: lixo
+      GroupName: ws-sg-2
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8001
+        ToPort: 8001
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8080
+        ToPort: 8080
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8004
+        ToPort: 8004
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 995
+        ToPort: 995
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: icmpv6
+        FromPort: -1
+        ToPort: -1
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8191
+        ToPort: 8191
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 143
+        ToPort: 143
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 465
+        ToPort: 465
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: icmp
+        FromPort: -1
+        ToPort: -1
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 443
+        ToPort: 443
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8051
+        ToPort: 8053
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 110
+        ToPort: 110
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 993
+        ToPort: 993
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8000
+        ToPort: 8000
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 21
+        ToPort: 21
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 25
+        ToPort: 25
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8003
+        ToPort: 8003
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8002
+        ToPort: 8002
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8100
+        ToPort: 8102
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8005
+        ToPort: 8005
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8010
+        ToPort: 8010
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  Lixosg5:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: launch-wizard-3 created 2023-05-19T16:49:57.685Z
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: lixo
+      GroupName: launch-wizard-3
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  Lixosg6:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: launch-wizard-4 created 2023-05-23T13:45:03.166Z
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: lixo
+      GroupName: launch-wizard-4
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  SgBastionserversg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: launch-wizard-1 created 2022-10-01T10:28:53.021Z
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: sg-bastionServer
+      GroupName: launch-wizard-1
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 443
+        ToPort: 443
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: icmp
+        FromPort: -1
+        ToPort: -1
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+  LaunchWizard2sg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: launch-wizard-2 created 2025-09-05T12:14:46.662Z
+      VpcId:
+        Ref: Thingsbrainvpc
+      GroupName: launch-wizard-2
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 443
+        ToPort: 443
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  Mysqlprivsg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: mySQL-priv created 2022-10-04T17:21:02.759Z
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: mySQLPriv
+      GroupName: mySQL-priv
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 1433
+        ToPort: 1433
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: tcp
+        FromPort: 3307
+        ToPort: 3307
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: tcp
+        FromPort: 3306
+        ToPort: 3306
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: icmp
+        FromPort: -1
+        ToPort: -1
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: null
+        IpRanges:
+        - CidrIp: 0.0.0.0/0
+        - CidrIp: 0.0.0.0/16
+Outputs: {}

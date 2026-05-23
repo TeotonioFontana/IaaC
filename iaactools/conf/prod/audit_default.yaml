@@ -1,0 +1,122 @@
+# =====================================================================
+# audit-default.yaml — Configuration for S3 Recovery Audit Tool
+# =====================================================================
+# This file defines how the recovery auditor inspects the S3 backup
+# repository to verify completeness and recoverability after a total
+# loss of the source AWS region.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# AUDIT SETTINGS
+# ---------------------------------------------------------------------
+audit:
+  # Name of the AWS CLI / boto3 profile used for authentication.
+  profile: default
+
+  # Primary AWS region that stores your backup artifacts.
+  region: us-east-1
+
+  # Target S3 bucket containing all backup data (snapshots, manifests, logs).
+  bucket: my-company-backups
+
+  # Prefix under the bucket where IaacTools stores all orchestrator runs.
+  # Example: "iaac/backups" → objects like "iaac/backups/runs/<run-id>/..."
+  root_prefix: iaac/backups
+
+  # Enable or disable simulation mode.
+  # When true, the audit will only print intended actions (no S3 writes).
+  simulate: false
+
+  # Optional ID of a specific backup run to audit.
+  # If omitted, the latest run (based on manifest pointer) is used.
+  run_id: null
+
+  # Local path for the generated audit report (JSON).
+  report_path: results/s3_recovery_audit_report.json
+
+
+# ---------------------------------------------------------------------
+# PHASE PREFIXES — folder structure used by each orchestration phase
+# ---------------------------------------------------------------------
+# These prefixes mirror the naming used during backup orchestration.
+prefixes:
+  base: iaac/backups                          # top-level prefix
+  discover: iaac/backups/runs/{run_id}/discover/           # where discovery metadata is stored
+  plan: iaac/backups/runs/{run_id}/plan/                   # optional planning reports
+  prep: iaac/backups/runs/{run_id}/prep/                   # helper lock and staging info
+  backup: iaac/backups/runs/{run_id}/backup/               # snapshot and full-volume artifacts
+  manifest: iaac/backups/runs/{run_id}/manifest/           # folder containing final manifest
+  logs: iaac/backups/runs/{run_id}/logs/                   # log files uploaded per run
+  artifacts: iaac/backups/runs/{run_id}/backup/artifacts/  # per-volume artifacts
+  indexes: iaac/backups/runs/{run_id}/indexes/             # index JSONs per volume
+  latest: iaac/backups/latest.json                         # latest pointer file
+
+
+# ---------------------------------------------------------------------
+# POLICY — what the auditor will check
+# ---------------------------------------------------------------------
+policy:
+  # Whether to verify that every manifest entry exists in S3.
+  stop_on_missing_manifest: true
+
+  # Whether to cross-check snapshot IDs in manifest against actual AWS EC2 snapshots.
+  # Requires EC2:DescribeSnapshots permission.
+  validate_snapshots: true
+
+  # Whether to confirm that every volume entry in the manifest has a
+  # corresponding snapshot or full-volume backup file in S3.
+  validate_fullvol_exports: true
+
+  # Whether to verify latest.json pointer consistency (points to existing run).
+  check_latest_pointer: true
+
+  # Whether to detect orphaned or stale objects not linked to any manifest.
+  detect_orphans: false
+
+
+# ---------------------------------------------------------------------
+# REPORTING AND OUTPUT
+# ---------------------------------------------------------------------
+report:
+  # Optional upload path in S3 for the audit results.
+  # Leave null to skip upload.
+  s3_upload_prefix: audits/
+
+  # Level of detail in report: summary | detailed | full.
+  detail_level: summary
+
+ # Local destination folder for generated PDF reports
+  pdf_output_dir: results/reports/
+
+
+# ---------------------------------------------------------------------
+# RECOVERY SIMULATION OPTIONS
+# ---------------------------------------------------------------------
+recovery_test:
+  # When enabled, the tool will simulate download and restore steps
+  # (no actual write operations).
+  enable_recovery_simulation: false
+
+  # Target region to test simulated restore.
+  test_region: us-east-2
+
+  # Name prefix for temporary restored snapshots or volumes.
+  restore_prefix: recovery-test-
+
+
+# ---------------------------------------------------------------------
+# LOGGING
+# ---------------------------------------------------------------------
+logging:
+  # Local log file path for the audit run.
+  log_file: logs/s3_recovery_audit.log
+
+  # Log format: text | json.
+  format: text
+
+  # Log level: DEBUG | INFO | WARNING | ERROR.
+  level: INFO
+
+# =====================================================================
+# End of audit-default.yaml
+# =====================================================================

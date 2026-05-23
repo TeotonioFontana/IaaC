@@ -1,0 +1,91 @@
+# =====================================================================
+# iaacctl.yaml — Default Configuration for IaacTools Unified CLI
+# =====================================================================
+# Version: 1.0.0
+# Author:  Teotoniio Fontana — Architect
+# Programmed by: Duke (GPT-5, OpenAI)
+# Project: IaaC Tools / Unified Command Interface
+# ---------------------------------------------------------------------
+# Description:
+# Centralized configuration for iaacctl.py, defining default AWS profile,
+# regions, paths, and tool-specific parameters. Can be overridden by CLI flags.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# Global defaults
+# ---------------------------------------------------------------------
+global:
+  profile: default                # AWS CLI profile name
+  region: us-east-1               # Primary AWS region
+  results_dir: ./results/logs     # Where logs/reports are stored
+  dry_run: false                  # Do not execute actual commands
+  log_level: INFO                 # INFO | DEBUG | WARNING | ERROR
+  timestamp_format: "%Y-%m-%dT%H:%M:%SZ"
+
+# ---------------------------------------------------------------------
+# Backup orchestrator defaults
+# ---------------------------------------------------------------------
+backup:
+  module: iaactools.codebase.backup_orchestrator_pkg.orchestrator
+  config: iaactools/codebase/conf/orchestrator/orchestrator-default.yaml
+  default_run_id: auto            # "auto" = generate ISO timestamp
+  backup_type: snapshot           # snapshot | full-volume | both
+  helper_instance_id: null        # optional EC2 helper instance
+  s3_upload: true
+  manifest_prefix: manifests/
+  log_prefix: logs/
+
+# ---------------------------------------------------------------------
+# Recovery audit defaults
+# ---------------------------------------------------------------------
+audit:
+  module: iaactools.codebase.recovery_audit_pkg.orchestrator
+  config: iaactools/codebase/conf/audit/audit-default.yaml
+  verify_snapshots: true
+  validate_config: true
+  report_pdf: true
+  log_prefix: logs/audit/
+
+# ---------------------------------------------------------------------
+# CloudFormation exporter defaults
+# ---------------------------------------------------------------------
+cfn-export:
+  module: iaactools.codebase.cfn_exporter
+  config: iaactools/codebase/conf/cloudformation/export-default.yaml
+  include_outputs: true
+  s3_backup: true
+  s3_bucket: my-company-backups
+  s3_prefix: cloudformation/exports/
+
+# ---------------------------------------------------------------------
+# CloudFormation splitter defaults
+# ---------------------------------------------------------------------
+cfn-split:
+  module: iaactools.codebase.cfn_splitter
+  config: iaactools/codebase/conf/cloudformation/split-default.yaml
+  output_dir: ./results/split
+  s3_upload: false
+  s3_bucket: my-company-backups
+  s3_prefix: cloudformation/split/
+
+# ---------------------------------------------------------------------
+# SSO exporter defaults
+# ---------------------------------------------------------------------
+sso-export:
+  module: iaactools.codebase.sso_exporter
+  config: iaactools/codebase/conf/sso/export-default.yaml
+  instance_arn: null
+  identity_store_id: null
+  out_dir: ./results/sso
+  max_results: 100
+
+# ---------------------------------------------------------------------
+# Notes
+# ---------------------------------------------------------------------
+# - CLI flags always override these defaults.
+# - Paths may be relative to the working directory.
+# - To enforce strict configs, each sub-module may re-validate its section.
+# - Example usage:
+#       python iaacctl.py backup --config iaactools/codebase/conf/iaacctl.yaml
+#       python iaacctl.py audit  --dry-run
+# =====================================================================

@@ -1,0 +1,1 @@
+python3 /Users/teotonio/Projetos/IaaC/iaactools/ebs_backup.py --config /Users/teotonio/Projetos/IaaC/iaactools/conf/backup-full-volumes.json --yes --verbose

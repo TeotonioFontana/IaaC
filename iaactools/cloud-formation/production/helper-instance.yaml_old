@@ -1,0 +1,194 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Helper Instance for EBS rescue/backup/snapshot operations
+
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: VPC where the helper will live
+  SubnetId:
+    Type: AWS::EC2::Subnet::Id
+    Description: Subnet for the helper (prefer a private subnet with NAT)
+  InstanceType:
+    Type: String
+    Default: t3.large
+    AllowedPattern: '^[a-z0-9.]+$'
+    Description: Instance type (CPU/RAM enough to copy/compress)
+  AmiId:
+    Type: AWS::EC2::Image::Id
+    Description: AMI for the helper. Recommend AL2023.
+    Default: ami-override
+  KeyName:
+    Type: String
+    Default: ''
+    Description: (Optional) EC2 KeyPair if you *really* want SSH
+  AllowSshFrom:
+    Type: String
+    Default: ''
+    Description: (Optional) CIDR to allow SSH from (e.g. 1.2.3.4/32). Leave blank to disable SSH ingress.
+  BackupBucketName:
+    Type: String
+    Default: ''
+    Description: (Optional) S3 bucket for offloading backups/checksums. Leave blank to skip S3 write policy.
+
+Conditions:
+  UseSSH: !Not [ !Equals [ !Ref AllowSshFrom, "" ] ]
+  UseKey: !Not [ !Equals [ !Ref KeyName, "" ] ]
+  UseS3Policy: !Not [ !Equals [ !Ref BackupBucketName, "" ] ]
+  AmiSpecified: !Not [ !Equals [ !Ref AmiId, "ami-override" ] ]
+
+Resources:
+  HelperSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Egress-only for Helper; optional SSH
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - !If
+          - UseSSH
+          - { IpProtocol: tcp, FromPort: 22, ToPort: 22, CidrIp: !Ref AllowSshFrom }
+          - !Ref "AWS::NoValue"
+      SecurityGroupEgress:
+        - { IpProtocol: -1, FromPort: 0, ToPort: 65535, CidrIp: 0.0.0.0/0 }
+
+  HelperRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { Service: ec2.amazonaws.com }
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      Policies:
+        - PolicyName: helper-ec2-attach-detach-describe
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: Ec2AttachDetachDescribe
+                Effect: Allow
+                Action:
+                  - ec2:AttachVolume
+                  - ec2:DetachVolume
+                  - ec2:Describe*
+                  - ec2:CreateTags
+                  - ec2:CreateSnapshot
+                  - ec2:CreateVolume
+                Resource: "*"
+        - !If
+          - UseS3Policy
+          -
+            PolicyName: helper-s3-backup
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Sid: S3PutGetListOnBucket
+                  Effect: Allow
+                  Action:
+                    - s3:PutObject
+                    - s3:GetObject
+                    - s3:ListBucket
+                  Resource:
+                    - !Sub arn:${AWS::Partition}:s3:::${BackupBucketName}
+                    - !Sub arn:${AWS::Partition}:s3:::${BackupBucketName}/*
+          - !Ref "AWS::NoValue"
+
+  HelperInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles: [ !Ref HelperRole ]
+
+  # If you want AL2023 without passing an AMI, replace ImageId with a dynamic reference:
+  # ImageId: '{{resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64:1}}'
+  # CFN linter sometimes complains in text blocks; passing AmiId keeps it explicit.
+  HelperInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      IamInstanceProfile: !Ref HelperInstanceProfile
+      InstanceType: !Ref InstanceType
+      ImageId: !If
+        - AmiSpecified
+        - !Ref AmiId
+        - '{{resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64:1}}'
+      NetworkInterfaces:
+        - DeviceIndex: 0
+          AssociatePublicIpAddress: false
+          SubnetId: !Ref SubnetId
+          GroupSet: [ !Ref HelperSG ]
+      KeyName: !If [ UseKey, !Ref KeyName, !Ref "AWS::NoValue" ]
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs:
+            VolumeSize: 20
+            VolumeType: gp3
+            Encrypted: true
+      Tags:
+        - { Key: Name, Value: helper-instance }
+      UserData:
+        Fn::Base64: !Sub |
+          #!/usr/bin/env bash
+          set -euxo pipefail
+          dnf -y update
+          dnf -y install jq nvme-cli lvm2 xfsprogs btrfs-progs mdadm cloud-utils-growpart rsync tar pigz pv
+
+          # Convenience scripts
+          install -d -m 0755 /opt/helper
+          cat >/opt/helper/ebs-map.sh << 'EOS'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          # Maps an attached EBS volume-id to its NVMe device path
+          VID="$1" # vol-xxxxxxxx
+          for d in /dev/nvme*n*; do
+            [[ -e "$d" ]] || continue
+            if ebsnvme-id "$d" 2>/dev/null | grep -q "Volume ID: $VID"; then
+              echo "$d"
+              exit 0
+            fi
+          done
+          echo "Not found: $VID" >&2
+          exit 1
+          EOS
+          chmod +x /opt/helper/ebs-map.sh
+
+          cat >/opt/helper/mount-readonly.sh << 'EOS'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          DEV="$1"  # e.g., /dev/nvme1n1
+          MP="${2:-/mnt/recovery}"
+          mkdir -p "$MP"
+          # Try common filesystems, no write intent
+          mount -o ro,noload "$DEV" "$MP" 2>/dev/null || \
+          mount -o ro "$DEV" "$MP"
+          echo "Mounted $DEV on $MP (read-only)."
+          EOS
+          chmod +x /opt/helper/mount-readonly.sh
+
+          cat >/opt/helper/sha256-tree.sh << 'EOS'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          SRC="${1:-/mnt/recovery}"
+          OUT="${2:-/tmp/checksums.sha256}"
+          (cd "$SRC" && find . -type f -print0 | xargs -0 -n1 sha256sum) | tee "$OUT"
+          echo "Wrote checksums to $OUT"
+          EOS
+          chmod +x /opt/helper/sha256-tree.sh
+
+          cat >/opt/helper/s3-upload.sh << 'EOS'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          FILE="$1"
+          BUCKET="$2"
+          KEY="${3:-$(basename "$FILE")}"
+          aws s3 cp "$FILE" "s3://$BUCKET/$KEY"
+          echo "Uploaded s3://$BUCKET/$KEY"
+          EOS
+          chmod +x /opt/helper/s3-upload.sh
+
+Outputs:
+  InstanceId:
+    Value: !Ref HelperInstance
+    Description: Helper Instance ID
+  SecurityGroupId:
+    Value: !Ref HelperSG
+    Description: Security Group ID

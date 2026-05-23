@@ -1,0 +1,11 @@
+profile: architect
+regions: ["us-east-2"]
+stack_name: tf-stack
+# output is run-specific; pass as overlay (like sso_exporter.out_dir)
+# S3 mirror (new)
+s3_bucket: 212533511020-tf-iaac
+s3_prefix: tf-cfn/
+s3_region: us-east-1
+s3_storage_class: INTELLIGENT_TIERING
+#s3_kms_key_id: backup-end-ebs # us-east-1 key alias
+s3_kms_key_id: arn:aws:kms:us-east-1:212533511020:key/00e97682-e08d-43f1-8aef-d470183e4c4a

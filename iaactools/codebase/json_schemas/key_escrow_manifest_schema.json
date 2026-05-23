@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://iaac-recovery-suite/json_schemas/key_escrow_manifest_schema.json",
+  "title": "Key Escrow Manifest Schema",
+  "description": "Tracks Shadow KMS keys, notification events, and encrypted artifacts.",
+  "$comment": "Introduced in v1.0.0 — ensures recovery viability when the main CMK is lost or deleted.",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "type": "string", "default": "1.0.0" },
+        "generated_at": { "type": "string", "format": "date-time" },
+        "owner": { "type": "string" },
+        "run_id": { "type": "string", "pattern": "^\\d{8}T\\d{6}Z$" }
+      },
+      "required": ["schema_version", "run_id", "owner"]
+    },
+
+    "shadow_keys": {
+      "type": "array",
+      "$comment": "Each entry corresponds to a shadow key created during the backup process.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ShadowKeyArn": { "type": "string" },
+          "Region": { "type": "string" },
+          "CreatedAt": { "type": "string", "format": "date-time" },
+          "NotificationSentTo": { "type": ["string", "null"] },
+          "EncryptedBackups": {
+            "type": "array",
+            "items": { "type": "string" },
+            "$comment": "List of S3 URIs or paths encrypted using this key."
+          },
+          "ExpirationDate": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "$comment": "Optional field for key rotation enforcement."
+          }
+        },
+        "required": ["ShadowKeyArn", "Region", "CreatedAt"]
+      }
+    },
+
+    "notifications": {
+      "type": "array",
+      "$comment": "Optional: event history for SES/SNS delivery tracking.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Timestamp": { "type": "string", "format": "date-time" },
+          "Recipient": { "type": "string" },
+          "DeliveryStatus": { "type": ["string", "null"] }
+        }
+      }
+    }
+  },
+  "required": ["meta", "shadow_keys"],
+  "additionalProperties": false
+}

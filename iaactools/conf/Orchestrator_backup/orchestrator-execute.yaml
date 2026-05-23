@@ -1,0 +1,48 @@
+profile: architect
+source_region: us-east-2
+home_region: us-east-2
+tools_dir: /Users/teotonio/Projetos/IaaC/iaactools/codebase
+out_root:  /Users/teotonio/Projetos/IaaC/results
+log_dir:   /Users/teotonio/Projetos/IaaC/results/log
+
+# ---- IDC (SSO / Identity Center) ----
+instance_arn: arn:aws:sso:::instance/ssoins-6684b776b34e737d
+identity_store_id: d-9a671b8524
+
+# optional: assume-role used by Phase 1 tools
+assume: arn:aws:iam::212533511020:role/SSOExportReadOnly
+assume_sts_region: us-east-1
+
+# ---- CloudFormation export ----
+stack_name: tf-stack
+
+enabled_modules:
+  - sso_exporter
+  - sso_assignments_exporter     # export assignments too
+  - cfn_exporter
+  - cfn_splitter
+  - ebs_backup
+  - ami_build
+
+# ---- Feature toggles ----
+enable_ebs: true
+enable_ami: true
+
+# Backward-compat: Phase 4 (EBS) still looks here if no module_configs.ebs_backup
+# ebs_config: /Users/teotonio/Projetos/IaaC/iaactools/conf/backup-full-volumes.yaml
+
+# ---- Run-time behavior ----
+preview: false
+simulate: true
+keep_going: false
+
+# ---- NEW: per-module configuration files ----
+# The orchestrator will pass `--config <file>` to each module if present here.
+# Paths below assume you keep module configs alongside your tools in ./conf/.
+module_configs:
+  sso_exporter:              /Users/teotonio/Projetos/IaaC/iaactools/conf/prod/sso_exporter.yaml
+  sso_assignments_exporter:  /Users/teotonio/Projetos/IaaC/iaactools/conf/prod/sso_assignments_exporter.yaml
+  cfn_exporter:              /Users/teotonio/Projetos/IaaC/iaactools/conf/prod/cfn_exporter.yaml
+  cfn_splitter:              /Users/teotonio/Projetos/IaaC/iaactools/conf/prod/cfn_splitter.yaml
+  ebs_backup:                /Users/teotonio/Projetos/IaaC/iaactools/conf/prod/ebs_volumes.yaml  # same as ebs_config
+  ami_build:                 /Users/teotonio/Projetos/IaaC/iaactools/conf/prod/ami_build.yaml

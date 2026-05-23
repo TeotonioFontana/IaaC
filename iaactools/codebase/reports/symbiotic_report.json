@@ -1,0 +1,3212 @@
+{
+  "root": "/Users/teotonio/Projetos/IaaC/iaactools/codebase/backup_orchestrator_pkg",
+  "stats": {
+    "py_files": 23,
+    "modules": 23,
+    "functions": 83
+  },
+  "warnings": [
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.snapshots.create_snapshot_for_volume",
+      "missing_args": [],
+      "has_args_section": true,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.snapshots.wait_snapshot_complete",
+      "missing_args": [],
+      "has_args_section": true,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.snapshots.copy_snapshot",
+      "missing_args": [],
+      "has_args_section": true,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.snapshots.summarize_snapshots",
+      "missing_args": [],
+      "has_args_section": true,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.models.BackupRecord.to_dict",
+      "missing_args": [
+        "self"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.models.BackupRecord.mark_complete",
+      "missing_args": [
+        "self"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.models.BackupRecord.mark_failed",
+      "missing_args": [
+        "self"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery.load_instance_name_map",
+      "missing_args": [
+        "ec2_client"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery.describe_volumes",
+      "missing_args": [
+        "ec2_client"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery.ssm_collect_lsblk",
+      "missing_args": [
+        "ssm_client",
+        "instance_id"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery.log_discovery_items",
+      "missing_args": [
+        "logger",
+        "instances",
+        "volumes"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.locks.acquire_helper_lock",
+      "missing_args": [],
+      "has_args_section": true,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.locks.release_helper_lock",
+      "missing_args": [],
+      "has_args_section": true,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.sha256_file",
+      "missing_args": [
+        "path"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_sections",
+      "missing_args": [
+        "manifest",
+        "base_dir"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_overall_checksum",
+      "missing_args": [
+        "manifest"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_kms_signature",
+      "missing_args": [
+        "manifest_path",
+        "manifest",
+        "profile"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_manifest",
+      "missing_args": [
+        "manifest_path",
+        "profile"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.s3_utils.upload_manifest_to_s3",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.s3_utils.upload_log_to_s3_if_present",
+      "missing_args": [
+        "cfg",
+        "log_path",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.s3_utils.append_volume_index_entry",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.s3_utils.write_latest_pointer",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.s3_utils.write_snapshot_artifacts",
+      "missing_args": [
+        "cfg",
+        "artifacts",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_multi._suppress_internal_logs",
+      "missing_args": [
+        "discover_fn",
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.sha256_file",
+      "missing_args": [
+        "path"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.write_json",
+      "missing_args": [
+        "path",
+        "data"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "missing_args": [],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.utils.secs_since",
+      "missing_args": [],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.utils.flatten_tags",
+      "missing_args": [
+        "tags"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.orchestrator.safe_sorted_keys",
+      "missing_args": [
+        "d"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.orchestrator.secs_since",
+      "missing_args": [
+        "start"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.orchestrator.resolve_regions",
+      "missing_args": [
+        "region_pattern",
+        "cfg"
+      ],
+      "has_args_section": false,
+      "has_range_hint": true,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.orchestrator.log_run_header",
+      "missing_args": [
+        "logger",
+        "cfg",
+        "results_dir",
+        "run_id",
+        "simulate"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.orchestrator.format_multiline_config",
+      "missing_args": [
+        "cfg_path",
+        "cfg"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.orchestrator.write_manifest_summary",
+      "missing_args": [
+        "logger",
+        "manifest_path",
+        "instances",
+        "volumes"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "missing_args": [
+        "logger",
+        "region",
+        "simulate",
+        "cfg",
+        "regions_list"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_core.wrapper",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_core.phase0_contract",
+      "missing_args": [
+        "func"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_core.safe_paginate",
+      "missing_args": [
+        "client",
+        "method_name",
+        "result_key"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_core.safe_describe",
+      "missing_args": [
+        "client",
+        "func_name"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_account_identity",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_networking",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_compute",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_ext._sha256_file",
+      "missing_args": [
+        "file_path"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_ext._write_json",
+      "missing_args": [
+        "path",
+        "data"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_ext._count",
+      "missing_args": [
+        "value"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_ext._normalize_region_manifest",
+      "missing_args": [],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment_multi",
+      "missing_args": [
+        "cfg",
+        "logger",
+        "regions_list"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.discovery_ext.verify_phase0_integrity",
+      "missing_args": [
+        "manifest_path",
+        "summary_path",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.fullvol.preclear_helper_instance",
+      "missing_args": [],
+      "has_args_section": true,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.fullvol.perform_full_volume_backup",
+      "missing_args": [],
+      "has_args_section": true,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.backup_config_validator.load_config",
+      "missing_args": [
+        "path"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.backup_config_validator.apply_overrides",
+      "missing_args": [
+        "cfg",
+        "args"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.backup_config_validator.validate_schema",
+      "missing_args": [
+        "cfg"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume._load_phase1_result",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest._load_json",
+      "missing_args": [
+        "path"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest._collect_phase_outputs",
+      "missing_args": [
+        "run_id",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot._load_validated_volumes",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.load_json",
+      "missing_args": [
+        "path"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.resolve_latest_manifest",
+      "missing_args": [
+        "artifact_root"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    },
+    {
+      "kind": "arg_docs",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "missing_args": [
+        "cfg",
+        "logger"
+      ],
+      "has_args_section": false,
+      "has_range_hint": false,
+      "message": "Argument documentation incomplete (names + ranges/choices/patterns required)."
+    }
+  ],
+  "errors": [
+    {
+      "kind": "static_key_type",
+      "function": "backup_orchestrator_pkg.discovery_ext.verify_phase0_integrity",
+      "key": "verified",
+      "types": [
+        "Constant",
+        "Name"
+      ],
+      "lineno": 297,
+      "message": "Key 'verified' has inconsistent return value types within function."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.create_snapshot_for_volume",
+      "callee": "volume.get",
+      "message": "Cross-package call to 'volume.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.create_snapshot_for_volume",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.create_snapshot_for_volume",
+      "callee": "time.sleep",
+      "message": "Cross-package call to 'time.sleep' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.create_snapshot_for_volume",
+      "callee": "ec2_client.create_snapshot",
+      "message": "Cross-package call to 'ec2_client.create_snapshot' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.create_snapshot_for_volume",
+      "callee": "logger.debug",
+      "message": "Cross-package call to 'logger.debug' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.create_snapshot_for_volume",
+      "callee": "response.get",
+      "message": "Cross-package call to 'response.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.create_snapshot_for_volume",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.wait_snapshot_complete",
+      "callee": "ec2_client.get_waiter",
+      "message": "Cross-package call to 'ec2_client.get_waiter' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.wait_snapshot_complete",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.wait_snapshot_complete",
+      "callee": "time.sleep",
+      "message": "Cross-package call to 'time.sleep' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.wait_snapshot_complete",
+      "callee": "waiter.wait",
+      "message": "Cross-package call to 'waiter.wait' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.wait_snapshot_complete",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.copy_snapshot",
+      "callee": "ec2_target.copy_snapshot",
+      "message": "Cross-package call to 'ec2_target.copy_snapshot' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.copy_snapshot",
+      "callee": "ec2_client.__class__",
+      "message": "Cross-package call to 'ec2_client.__class__' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.copy_snapshot",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.copy_snapshot",
+      "callee": "logger.debug",
+      "message": "Cross-package call to 'logger.debug' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.copy_snapshot",
+      "callee": "response.get",
+      "message": "Cross-package call to 'response.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.copy_snapshot",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.summarize_snapshots",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.summarize_snapshots",
+      "callee": "snap.get",
+      "message": "Cross-package call to 'snap.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.snapshots.summarize_snapshots",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.runner.parse_args",
+      "callee": "parser.add_argument",
+      "message": "Cross-package call to 'parser.add_argument' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.runner.parse_args",
+      "callee": "argparse.ArgumentParser",
+      "message": "Cross-package call to 'argparse.ArgumentParser' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.runner.parse_args",
+      "callee": "parser.parse_args",
+      "message": "Cross-package call to 'parser.parse_args' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.runner.main",
+      "callee": "result.get",
+      "message": "Cross-package call to 'result.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.runner.main",
+      "callee": "pathlib.Path",
+      "message": "Cross-package call to 'pathlib.Path' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.runner.main",
+      "callee": "config_path.exists",
+      "message": "Cross-package call to 'config_path.exists' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.runner.main",
+      "callee": "traceback.print_exc",
+      "message": "Cross-package call to 'traceback.print_exc' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.runner.main",
+      "callee": "orchestrator.main",
+      "message": "Cross-package call to 'orchestrator.main' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.runner.main",
+      "callee": "sys.exit",
+      "message": "Cross-package call to 'sys.exit' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.models.BackupRecord.to_dict",
+      "callee": "dataclasses.asdict",
+      "message": "Cross-package call to 'dataclasses.asdict' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.models.BackupRecord.mark_complete",
+      "callee": "datetime.utcnow",
+      "message": "Cross-package call to 'datetime.utcnow' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.models.BackupRecord.mark_failed",
+      "callee": "datetime.utcnow",
+      "message": "Cross-package call to 'datetime.utcnow' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery.load_instance_name_map",
+      "callee": "ec2_client.describe_instances",
+      "message": "Cross-package call to 'ec2_client.describe_instances' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery.load_instance_name_map",
+      "callee": "instance.get",
+      "message": "Cross-package call to 'instance.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery.describe_volumes",
+      "callee": "ec2_client.describe_volumes",
+      "message": "Cross-package call to 'ec2_client.describe_volumes' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery.log_discovery_items",
+      "callee": "instances.items",
+      "message": "Cross-package call to 'instances.items' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery.log_discovery_items",
+      "callee": "iaactools.log_phase_status",
+      "message": "Cross-package call to 'iaactools.log_phase_status' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery.log_discovery_items",
+      "callee": "v.get",
+      "message": "Cross-package call to 'v.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery.log_discovery_items",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.locks.acquire_helper_lock",
+      "callee": "time.sleep",
+      "message": "Cross-package call to 'time.sleep' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.locks.acquire_helper_lock",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.locks.acquire_helper_lock",
+      "callee": "iaactools.log_phase_status",
+      "message": "Cross-package call to 'iaactools.log_phase_status' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.locks.acquire_helper_lock",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.locks.release_helper_lock",
+      "callee": "time.sleep",
+      "message": "Cross-package call to 'time.sleep' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.locks.release_helper_lock",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.locks.release_helper_lock",
+      "callee": "iaactools.log_phase_status",
+      "message": "Cross-package call to 'iaactools.log_phase_status' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.locks.release_helper_lock",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.sha256_file",
+      "callee": "hashlib.sha256",
+      "message": "Cross-package call to 'hashlib.sha256' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.sha256_file",
+      "callee": "h.hexdigest",
+      "message": "Cross-package call to 'h.hexdigest' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.sha256_file",
+      "callee": "h.update",
+      "message": "Cross-package call to 'h.update' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.sha256_file",
+      "callee": "path.open",
+      "message": "Cross-package call to 'path.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.sha256_file",
+      "callee": "f.read",
+      "message": "Cross-package call to 'f.read' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_overall_checksum",
+      "callee": "hasher.hexdigest",
+      "message": "Cross-package call to 'hasher.hexdigest' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_overall_checksum",
+      "callee": "hasher.update",
+      "message": "Cross-package call to 'hasher.update' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_overall_checksum",
+      "callee": "hashlib.sha256",
+      "message": "Cross-package call to 'hashlib.sha256' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_kms_signature",
+      "callee": "manifest_path.open",
+      "message": "Cross-package call to 'manifest_path.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_kms_signature",
+      "callee": "alias_uri.split",
+      "message": "Cross-package call to 'alias_uri.split' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_kms_signature",
+      "callee": "manifest_path.with_suffix",
+      "message": "Cross-package call to 'manifest_path.with_suffix' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_kms_signature",
+      "callee": "sig_path.read_bytes",
+      "message": "Cross-package call to 'sig_path.read_bytes' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_kms_signature",
+      "callee": "resp.get",
+      "message": "Cross-package call to 'resp.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_kms_signature",
+      "callee": "kms.verify",
+      "message": "Cross-package call to 'kms.verify' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_kms_signature",
+      "callee": "boto3.client",
+      "message": "Cross-package call to 'boto3.client' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_kms_signature",
+      "callee": "sig_path.exists",
+      "message": "Cross-package call to 'sig_path.exists' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_kms_signature",
+      "callee": "f.read",
+      "message": "Cross-package call to 'f.read' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_manifest",
+      "callee": "json.loads",
+      "message": "Cross-package call to 'json.loads' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_audit_verify.verify_manifest",
+      "callee": "manifest_path.read_text",
+      "message": "Cross-package call to 'manifest_path.read_text' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.upload_manifest_to_s3",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.upload_manifest_to_s3",
+      "callee": "time.sleep",
+      "message": "Cross-package call to 'time.sleep' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.upload_manifest_to_s3",
+      "callee": "iaactools.log_phase_status",
+      "message": "Cross-package call to 'iaactools.log_phase_status' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.upload_manifest_to_s3",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.upload_log_to_s3_if_present",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.upload_log_to_s3_if_present",
+      "callee": "time.sleep",
+      "message": "Cross-package call to 'time.sleep' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.upload_log_to_s3_if_present",
+      "callee": "iaactools.log_phase_status",
+      "message": "Cross-package call to 'iaactools.log_phase_status' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.upload_log_to_s3_if_present",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.append_volume_index_entry",
+      "callee": "logger.debug",
+      "message": "Cross-package call to 'logger.debug' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.write_latest_pointer",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.write_latest_pointer",
+      "callee": "time.sleep",
+      "message": "Cross-package call to 'time.sleep' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.write_latest_pointer",
+      "callee": "iaactools.log_phase_status",
+      "message": "Cross-package call to 'iaactools.log_phase_status' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.write_latest_pointer",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.write_snapshot_artifacts",
+      "callee": "time.sleep",
+      "message": "Cross-package call to 'time.sleep' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.write_snapshot_artifacts",
+      "callee": "iaactools.log_phase_status",
+      "message": "Cross-package call to 'iaactools.log_phase_status' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.s3_utils.write_snapshot_artifacts",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi._suppress_internal_logs",
+      "callee": "logger.setLevel",
+      "message": "Cross-package call to 'logger.setLevel' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "storage.values",
+      "message": "Cross-package call to 'storage.values' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "discovery_core.discover_account_identity",
+      "message": "Cross-package call to 'discovery_core.discover_account_identity' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "datetime.utcnow",
+      "message": "Cross-package call to 'datetime.utcnow' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "cfg.copy",
+      "message": "Cross-package call to 'cfg.copy' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "compute.items",
+      "message": "Cross-package call to 'compute.items' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "storage.get",
+      "message": "Cross-package call to 'storage.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "region_stats.append",
+      "message": "Cross-package call to 'region_stats.append' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "ec2.describe_regions",
+      "message": "Cross-package call to 'ec2.describe_regions' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "boto3.client",
+      "message": "Cross-package call to 'boto3.client' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_multi.discover_environment_multi",
+      "callee": "compute.get",
+      "message": "Cross-package call to 'compute.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.sha256_file",
+      "callee": "hashlib.sha256",
+      "message": "Cross-package call to 'hashlib.sha256' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.sha256_file",
+      "callee": "h.hexdigest",
+      "message": "Cross-package call to 'h.hexdigest' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.sha256_file",
+      "callee": "h.update",
+      "message": "Cross-package call to 'h.update' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.sha256_file",
+      "callee": "path.open",
+      "message": "Cross-package call to 'path.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.sha256_file",
+      "callee": "f.read",
+      "message": "Cross-package call to 'f.read' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.write_json",
+      "callee": "json.dump",
+      "message": "Cross-package call to 'json.dump' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.write_json",
+      "callee": "path.parent.mkdir",
+      "message": "Cross-package call to 'path.parent.mkdir' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.write_json",
+      "callee": "path.open",
+      "message": "Cross-package call to 'path.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "section_path.exists",
+      "message": "Cross-package call to 'section_path.exists' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "manifest_path.with_suffix",
+      "message": "Cross-package call to 'manifest_path.with_suffix' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "json.loads",
+      "message": "Cross-package call to 'json.loads' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "boto3.client",
+      "message": "Cross-package call to 'boto3.client' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "hashlib.sha256",
+      "message": "Cross-package call to 'hashlib.sha256' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "total_counts.get",
+      "message": "Cross-package call to 'total_counts.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "datetime.utcnow",
+      "message": "Cross-package call to 'datetime.utcnow' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "f.read",
+      "message": "Cross-package call to 'f.read' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "manifest_path.open",
+      "message": "Cross-package call to 'manifest_path.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "overall_hasher.update",
+      "message": "Cross-package call to 'overall_hasher.update' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "overall_hasher.hexdigest",
+      "message": "Cross-package call to 'overall_hasher.hexdigest' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "section_path.read_text",
+      "message": "Cross-package call to 'section_path.read_text' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "section_path.relative_to",
+      "message": "Cross-package call to 'section_path.relative_to' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "kms.sign",
+      "message": "Cross-package call to 'kms.sign' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "digest.encode",
+      "message": "Cross-package call to 'digest.encode' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.manifest_aggregator.aggregate_manifests",
+      "callee": "sig_path.write_bytes",
+      "message": "Cross-package call to 'sig_path.write_bytes' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.utils.utc_iso",
+      "callee": "datetime.now",
+      "message": "Cross-package call to 'datetime.now' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.utils.run_id_iso",
+      "callee": "datetime.now",
+      "message": "Cross-package call to 'datetime.now' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.utils.secs_since",
+      "callee": "time.time",
+      "message": "Cross-package call to 'time.time' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.utils.flatten_tags",
+      "callee": "tags.items",
+      "message": "Cross-package call to 'tags.items' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.safe_sorted_keys",
+      "callee": "d.keys",
+      "message": "Cross-package call to 'd.keys' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.utc_iso",
+      "callee": "datetime.utcnow",
+      "message": "Cross-package call to 'datetime.utcnow' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.run_id_iso",
+      "callee": "datetime.utcnow",
+      "message": "Cross-package call to 'datetime.utcnow' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.secs_since",
+      "callee": "time.time",
+      "message": "Cross-package call to 'time.time' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.resolve_regions",
+      "callee": "re.compile",
+      "message": "Cross-package call to 're.compile' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.resolve_regions",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.resolve_regions",
+      "callee": "boto3.session.Session",
+      "message": "Cross-package call to 'boto3.session.Session' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.resolve_regions",
+      "callee": "r.startswith",
+      "message": "Cross-package call to 'r.startswith' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.resolve_regions",
+      "callee": "region_pattern.strip",
+      "message": "Cross-package call to 'region_pattern.strip' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.resolve_regions",
+      "callee": "regex.search",
+      "message": "Cross-package call to 'regex.search' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.resolve_regions",
+      "callee": "session.get_available_regions",
+      "message": "Cross-package call to 'session.get_available_regions' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.log_run_header",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.log_run_header",
+      "callee": "banner.strip",
+      "message": "Cross-package call to 'banner.strip' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.log_run_header",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.format_multiline_config",
+      "callee": "lines.append",
+      "message": "Cross-package call to 'lines.append' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.write_manifest_summary",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "manifest.get",
+      "message": "Cross-package call to 'manifest.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "net.get",
+      "message": "Cross-package call to 'net.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "storage.get",
+      "message": "Cross-package call to 'storage.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "acct.get",
+      "message": "Cross-package call to 'acct.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "summary_line.splitlines",
+      "message": "Cross-package call to 'summary_line.splitlines' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "cloud.get",
+      "message": "Cross-package call to 'cloud.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "discovery_ext.discover_environment",
+      "message": "Cross-package call to 'discovery_ext.discover_environment' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "time.time",
+      "message": "Cross-package call to 'time.time' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "summary.get",
+      "message": "Cross-package call to 'summary.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "discovery_ext.discover_environment_multi",
+      "message": "Cross-package call to 'discovery_ext.discover_environment_multi' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.phase0_global_discovery",
+      "callee": "compute.get",
+      "message": "Cross-package call to 'compute.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "results_dir.mkdir",
+      "message": "Cross-package call to 'results_dir.mkdir' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "fullvol.preclear_helper_instance",
+      "message": "Cross-package call to 'fullvol.preclear_helper_instance' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "s3_utils.upload_manifest_to_s3",
+      "message": "Cross-package call to 's3_utils.upload_manifest_to_s3' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "s3_utils.upload_log_to_s3_if_present",
+      "message": "Cross-package call to 's3_utils.upload_log_to_s3_if_present' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "argparse.ArgumentParser",
+      "message": "Cross-package call to 'argparse.ArgumentParser' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "iaactools.load_config",
+      "message": "Cross-package call to 'iaactools.load_config' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "s3_utils.write_latest_pointer",
+      "message": "Cross-package call to 's3_utils.write_latest_pointer' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "boto3.client",
+      "message": "Cross-package call to 'boto3.client' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "time.time",
+      "message": "Cross-package call to 'time.time' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "pathlib.Path",
+      "message": "Cross-package call to 'pathlib.Path' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "parser.add_argument",
+      "message": "Cross-package call to 'parser.add_argument' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "iaactools.log_phase_status",
+      "message": "Cross-package call to 'iaactools.log_phase_status' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "snapshots.wait_snapshot_complete",
+      "message": "Cross-package call to 'snapshots.wait_snapshot_complete' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "fullvol.perform_full_volume_backup",
+      "message": "Cross-package call to 'fullvol.perform_full_volume_backup' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "iaactools.build_logger",
+      "message": "Cross-package call to 'iaactools.build_logger' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "discovery.load_instance_name_map",
+      "message": "Cross-package call to 'discovery.load_instance_name_map' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "cfg_text.splitlines",
+      "message": "Cross-package call to 'cfg_text.splitlines' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "v.get",
+      "message": "Cross-package call to 'v.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "manifest_path.open",
+      "message": "Cross-package call to 'manifest_path.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "json.dump",
+      "message": "Cross-package call to 'json.dump' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "sys.exit",
+      "message": "Cross-package call to 'sys.exit' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "parser.parse_args",
+      "message": "Cross-package call to 'parser.parse_args' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "iaactools.log_step",
+      "message": "Cross-package call to 'iaactools.log_step' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "discovery.log_discovery_items",
+      "message": "Cross-package call to 'discovery.log_discovery_items' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "snapshots.create_snapshot_for_volume",
+      "message": "Cross-package call to 'snapshots.create_snapshot_for_volume' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "discovery.describe_volumes",
+      "message": "Cross-package call to 'discovery.describe_volumes' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.orchestrator.main",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.wrapper",
+      "callee": "time.time",
+      "message": "Cross-package call to 'time.time' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.safe_paginate",
+      "callee": "results.extend",
+      "message": "Cross-package call to 'results.extend' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.safe_paginate",
+      "callee": "page.get",
+      "message": "Cross-package call to 'page.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.safe_paginate",
+      "callee": "client.get_paginator",
+      "message": "Cross-package call to 'client.get_paginator' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.safe_paginate",
+      "callee": "paginator.paginate",
+      "message": "Cross-package call to 'paginator.paginate' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_account_identity",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_account_identity",
+      "callee": "ident.get",
+      "message": "Cross-package call to 'ident.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_account_identity",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_account_identity",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_account_identity",
+      "callee": "sts.get_caller_identity",
+      "message": "Cross-package call to 'sts.get_caller_identity' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_account_identity",
+      "callee": "caller.get",
+      "message": "Cross-package call to 'caller.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_account_identity",
+      "callee": "orgs.describe_organization",
+      "message": "Cross-package call to 'orgs.describe_organization' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_account_identity",
+      "callee": "ec2.describe_regions",
+      "message": "Cross-package call to 'ec2.describe_regions' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_account_identity",
+      "callee": "boto3.client",
+      "message": "Cross-package call to 'boto3.client' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_account_identity",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "callee": "desc.get",
+      "message": "Cross-package call to 'desc.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "callee": "outputs.append",
+      "message": "Cross-package call to 'outputs.append' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "callee": "page.get",
+      "message": "Cross-package call to 'page.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "callee": "failed.append",
+      "message": "Cross-package call to 'failed.append' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "callee": "cfn.describe_stacks",
+      "message": "Cross-package call to 'cfn.describe_stacks' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "callee": "cfn.get_paginator",
+      "message": "Cross-package call to 'cfn.get_paginator' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "callee": "boto3.client",
+      "message": "Cross-package call to 'boto3.client' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "callee": "stacks.append",
+      "message": "Cross-package call to 'stacks.append' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "callee": "paginator.paginate",
+      "message": "Cross-package call to 'paginator.paginate' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_cloudformation",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_networking",
+      "callee": "ec2.describe_security_groups",
+      "message": "Cross-package call to 'ec2.describe_security_groups' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_networking",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_networking",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_networking",
+      "callee": "ec2.describe_internet_gateways",
+      "message": "Cross-package call to 'ec2.describe_internet_gateways' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_networking",
+      "callee": "ec2.describe_subnets",
+      "message": "Cross-package call to 'ec2.describe_subnets' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_networking",
+      "callee": "ec2.describe_vpcs",
+      "message": "Cross-package call to 'ec2.describe_vpcs' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_networking",
+      "callee": "data.update",
+      "message": "Cross-package call to 'data.update' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_networking",
+      "callee": "boto3.client",
+      "message": "Cross-package call to 'boto3.client' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_networking",
+      "callee": "data.get",
+      "message": "Cross-package call to 'data.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_networking",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_compute",
+      "callee": "asg.describe_auto_scaling_groups",
+      "message": "Cross-package call to 'asg.describe_auto_scaling_groups' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_compute",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_compute",
+      "callee": "elb.describe_load_balancers",
+      "message": "Cross-package call to 'elb.describe_load_balancers' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_compute",
+      "callee": "ec2.describe_instances",
+      "message": "Cross-package call to 'ec2.describe_instances' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_compute",
+      "callee": "lamb.list_functions",
+      "message": "Cross-package call to 'lamb.list_functions' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_compute",
+      "callee": "ecs.list_clusters",
+      "message": "Cross-package call to 'ecs.list_clusters' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_compute",
+      "callee": "ecr.describe_repositories",
+      "message": "Cross-package call to 'ecr.describe_repositories' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_compute",
+      "callee": "boto3.client",
+      "message": "Cross-package call to 'boto3.client' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_compute",
+      "callee": "r.get",
+      "message": "Cross-package call to 'r.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_compute",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "callee": "fsx.describe_file_systems",
+      "message": "Cross-package call to 'fsx.describe_file_systems' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "callee": "s3.get_bucket_location",
+      "message": "Cross-package call to 's3.get_bucket_location' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "callee": "rds.describe_db_instances",
+      "message": "Cross-package call to 'rds.describe_db_instances' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "callee": "kms.list_keys",
+      "message": "Cross-package call to 'kms.list_keys' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "callee": "s3.list_buckets",
+      "message": "Cross-package call to 's3.list_buckets' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "callee": "regional.append",
+      "message": "Cross-package call to 'regional.append' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "callee": "efs.describe_file_systems",
+      "message": "Cross-package call to 'efs.describe_file_systems' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "callee": "boto3.client",
+      "message": "Cross-package call to 'boto3.client' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "callee": "ec2.describe_snapshots",
+      "message": "Cross-package call to 'ec2.describe_snapshots' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_core.discover_storage",
+      "callee": "backup.list_backup_vaults",
+      "message": "Cross-package call to 'backup.list_backup_vaults' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext._sha256_file",
+      "callee": "hashlib.sha256",
+      "message": "Cross-package call to 'hashlib.sha256' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext._sha256_file",
+      "callee": "h.hexdigest",
+      "message": "Cross-package call to 'h.hexdigest' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext._sha256_file",
+      "callee": "h.update",
+      "message": "Cross-package call to 'h.update' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext._sha256_file",
+      "callee": "f.read",
+      "message": "Cross-package call to 'f.read' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext._write_json",
+      "callee": "json.dump",
+      "message": "Cross-package call to 'json.dump' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext._write_json",
+      "callee": "pathlib.Path",
+      "message": "Cross-package call to 'pathlib.Path' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext._normalize_region_manifest",
+      "callee": "out.pop",
+      "message": "Cross-package call to 'out.pop' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "cfn.get",
+      "message": "Cross-package call to 'cfn.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "stor.get",
+      "message": "Cross-package call to 'stor.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "discovery_core.discover_cloudformation",
+      "message": "Cross-package call to 'discovery_core.discover_cloudformation' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "discovery_core.discover_networking",
+      "message": "Cross-package call to 'discovery_core.discover_networking' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "time.time",
+      "message": "Cross-package call to 'time.time' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "datetime.utcnow",
+      "message": "Cross-package call to 'datetime.utcnow' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "net.get",
+      "message": "Cross-package call to 'net.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "discovery_core.discover_compute",
+      "message": "Cross-package call to 'discovery_core.discover_compute' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "discovery_core.discover_storage",
+      "message": "Cross-package call to 'discovery_core.discover_storage' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "acct.get",
+      "message": "Cross-package call to 'acct.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "discovery_core.discover_account_identity",
+      "message": "Cross-package call to 'discovery_core.discover_account_identity' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "ident.get",
+      "message": "Cross-package call to 'ident.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "manifest.get",
+      "message": "Cross-package call to 'manifest.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "comp.get",
+      "message": "Cross-package call to 'comp.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment_multi",
+      "callee": "pathlib.Path",
+      "message": "Cross-package call to 'pathlib.Path' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment_multi",
+      "callee": "datetime.utcnow",
+      "message": "Cross-package call to 'datetime.utcnow' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment_multi",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment_multi",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment_multi",
+      "callee": "region_manifest.get",
+      "message": "Cross-package call to 'region_manifest.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment_multi",
+      "callee": "output_dir.mkdir",
+      "message": "Cross-package call to 'output_dir.mkdir' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment_multi",
+      "callee": "storage.get",
+      "message": "Cross-package call to 'storage.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment_multi",
+      "callee": "time.time",
+      "message": "Cross-package call to 'time.time' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment_multi",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.discover_environment_multi",
+      "callee": "compute.get",
+      "message": "Cross-package call to 'compute.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.verify_phase0_integrity",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.verify_phase0_integrity",
+      "callee": "pathlib.Path",
+      "message": "Cross-package call to 'pathlib.Path' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.verify_phase0_integrity",
+      "callee": "json.load",
+      "message": "Cross-package call to 'json.load' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.verify_phase0_integrity",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.discovery_ext.verify_phase0_integrity",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.fullvol.preclear_helper_instance",
+      "callee": "time.sleep",
+      "message": "Cross-package call to 'time.sleep' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.fullvol.preclear_helper_instance",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.fullvol.preclear_helper_instance",
+      "callee": "iaactools.log_phase_status",
+      "message": "Cross-package call to 'iaactools.log_phase_status' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.fullvol.preclear_helper_instance",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.fullvol.perform_full_volume_backup",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.fullvol.perform_full_volume_backup",
+      "callee": "iaactools.log_phase_status",
+      "message": "Cross-package call to 'iaactools.log_phase_status' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.fullvol.perform_full_volume_backup",
+      "callee": "time.sleep",
+      "message": "Cross-package call to 'time.sleep' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.fullvol.perform_full_volume_backup",
+      "callee": "v.get",
+      "message": "Cross-package call to 'v.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.fullvol.perform_full_volume_backup",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.generate_run_id",
+      "callee": "datetime.datetime.utcnow",
+      "message": "Cross-package call to 'datetime.datetime.utcnow' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.parse_args",
+      "callee": "parser.add_argument",
+      "message": "Cross-package call to 'parser.add_argument' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.parse_args",
+      "callee": "argparse.ArgumentParser",
+      "message": "Cross-package call to 'argparse.ArgumentParser' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.parse_args",
+      "callee": "parser.parse_args",
+      "message": "Cross-package call to 'parser.parse_args' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.load_config",
+      "callee": "path.suffix.lower",
+      "message": "Cross-package call to 'path.suffix.lower' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.load_config",
+      "callee": "path.exists",
+      "message": "Cross-package call to 'path.exists' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.load_config",
+      "callee": "yaml.safe_load",
+      "message": "Cross-package call to 'yaml.safe_load' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.load_config",
+      "callee": "json.load",
+      "message": "Cross-package call to 'json.load' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.load_config",
+      "callee": "sys.exit",
+      "message": "Cross-package call to 'sys.exit' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.load_config",
+      "callee": "iaactools.color_text",
+      "message": "Cross-package call to 'iaactools.color_text' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.apply_overrides",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.apply_overrides",
+      "callee": "iaactools.color_text",
+      "message": "Cross-package call to 'iaactools.color_text' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.validate_schema",
+      "callee": "jsonschema.validate",
+      "message": "Cross-package call to 'jsonschema.validate' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.validate_schema",
+      "callee": "sys.exit",
+      "message": "Cross-package call to 'sys.exit' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.validate_schema",
+      "callee": "iaactools.color_text",
+      "message": "Cross-package call to 'iaactools.color_text' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.validate_schema",
+      "callee": "iaactools.load_schema",
+      "message": "Cross-package call to 'iaactools.load_schema' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.parse_and_validate",
+      "callee": "pathlib.Path",
+      "message": "Cross-package call to 'pathlib.Path' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.backup_config_validator.parse_and_validate",
+      "callee": "iaactools.color_text",
+      "message": "Cross-package call to 'iaactools.color_text' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume._load_phase1_result",
+      "callee": "path.exists",
+      "message": "Cross-package call to 'path.exists' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume._load_phase1_result",
+      "callee": "path.open",
+      "message": "Cross-package call to 'path.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume._load_phase1_result",
+      "callee": "json.load",
+      "message": "Cross-package call to 'json.load' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume._load_phase1_result",
+      "callee": "data.get",
+      "message": "Cross-package call to 'data.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume._load_phase1_result",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume._load_phase1_result",
+      "callee": "Path.cwd",
+      "message": "Cross-package call to 'Path.cwd' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "results_dir.mkdir",
+      "message": "Cross-package call to 'results_dir.mkdir' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "region_out.open",
+      "message": "Cross-package call to 'region_out.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "data.get",
+      "message": "Cross-package call to 'data.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "v.get",
+      "message": "Cross-package call to 'v.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "inventories.items",
+      "message": "Cross-package call to 'inventories.items' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "json.dump",
+      "message": "Cross-package call to 'json.dump' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "Path.cwd",
+      "message": "Cross-package call to 'Path.cwd' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "iaactools.safe_save_json",
+      "message": "Cross-package call to 'iaactools.safe_save_json' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "result.update",
+      "message": "Cross-package call to 'result.update' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "logger.debug",
+      "message": "Cross-package call to 'logger.debug' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "staged.append",
+      "message": "Cross-package call to 'staged.append' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase2_volume.run",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest._load_json",
+      "callee": "json.load",
+      "message": "Cross-package call to 'json.load' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest._load_json",
+      "callee": "path.exists",
+      "message": "Cross-package call to 'path.exists' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest._load_json",
+      "callee": "path.open",
+      "message": "Cross-package call to 'path.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest._collect_phase_outputs",
+      "callee": "phase1.get",
+      "message": "Cross-package call to 'phase1.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest._collect_phase_outputs",
+      "callee": "vf.stem.replace",
+      "message": "Cross-package call to 'vf.stem.replace' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest._collect_phase_outputs",
+      "callee": "base.glob",
+      "message": "Cross-package call to 'base.glob' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest._collect_phase_outputs",
+      "callee": "sf.stem.replace",
+      "message": "Cross-package call to 'sf.stem.replace' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest._collect_phase_outputs",
+      "callee": "logger.debug",
+      "message": "Cross-package call to 'logger.debug' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest._collect_phase_outputs",
+      "callee": "Path.cwd",
+      "message": "Cross-package call to 'Path.cwd' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "results_dir.mkdir",
+      "message": "Cross-package call to 'results_dir.mkdir' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "vols_by_region.get",
+      "message": "Cross-package call to 'vols_by_region.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "out_path.open",
+      "message": "Cross-package call to 'out_path.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "datetime.utcnow",
+      "message": "Cross-package call to 'datetime.utcnow' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "inventories.items",
+      "message": "Cross-package call to 'inventories.items' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "json.dump",
+      "message": "Cross-package call to 'json.dump' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "synthetic_path.open",
+      "message": "Cross-package call to 'synthetic_path.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "Path.cwd",
+      "message": "Cross-package call to 'Path.cwd' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "iaactools.safe_save_json",
+      "message": "Cross-package call to 'iaactools.safe_save_json' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "result.update",
+      "message": "Cross-package call to 'result.update' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "region_data.get",
+      "message": "Cross-package call to 'region_data.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "snaps_by_region.get",
+      "message": "Cross-package call to 'snaps_by_region.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase4_manifest.run",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot._load_validated_volumes",
+      "callee": "vf.open",
+      "message": "Cross-package call to 'vf.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot._load_validated_volumes",
+      "callee": "vf.stem.replace",
+      "message": "Cross-package call to 'vf.stem.replace' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot._load_validated_volumes",
+      "callee": "base.glob",
+      "message": "Cross-package call to 'base.glob' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot._load_validated_volumes",
+      "callee": "json.load",
+      "message": "Cross-package call to 'json.load' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot._load_validated_volumes",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot._load_validated_volumes",
+      "callee": "Path.cwd",
+      "message": "Cross-package call to 'Path.cwd' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "results_dir.mkdir",
+      "message": "Cross-package call to 'results_dir.mkdir' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "vol.get",
+      "message": "Cross-package call to 'vol.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "snap_file.open",
+      "message": "Cross-package call to 'snap_file.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "region_snaps.append",
+      "message": "Cross-package call to 'region_snaps.append' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "datetime.utcnow",
+      "message": "Cross-package call to 'datetime.utcnow' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "inventories.items",
+      "message": "Cross-package call to 'inventories.items' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "json.dump",
+      "message": "Cross-package call to 'json.dump' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "ec2.create_snapshot",
+      "message": "Cross-package call to 'ec2.create_snapshot' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "session.client",
+      "message": "Cross-package call to 'session.client' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "Path.cwd",
+      "message": "Cross-package call to 'Path.cwd' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "iaactools.safe_save_json",
+      "message": "Cross-package call to 'iaactools.safe_save_json' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "result.update",
+      "message": "Cross-package call to 'result.update' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "boto3.Session",
+      "message": "Cross-package call to 'boto3.Session' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase3_snapshot.run",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.load_json",
+      "callee": "json.load",
+      "message": "Cross-package call to 'json.load' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.load_json",
+      "callee": "path.open",
+      "message": "Cross-package call to 'path.open' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.resolve_latest_manifest",
+      "callee": "artifact_root.glob",
+      "message": "Cross-package call to 'artifact_root.glob' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "results_dir.mkdir",
+      "message": "Cross-package call to 'results_dir.mkdir' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "manifest_audit_verify.verify_manifest",
+      "message": "Cross-package call to 'manifest_audit_verify.verify_manifest' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "s3.head_bucket",
+      "message": "Cross-package call to 's3.head_bucket' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "pathlib.Path",
+      "message": "Cross-package call to 'pathlib.Path' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "ec2.describe_regions",
+      "message": "Cross-package call to 'ec2.describe_regions' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "sections.get",
+      "message": "Cross-package call to 'sections.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "sts.get_caller_identity",
+      "message": "Cross-package call to 'sts.get_caller_identity' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "session.client",
+      "message": "Cross-package call to 'session.client' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "Path.cwd",
+      "message": "Cross-package call to 'Path.cwd' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "manifest.get",
+      "message": "Cross-package call to 'manifest.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "ident.get",
+      "message": "Cross-package call to 'ident.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "iaactools.safe_save_json",
+      "message": "Cross-package call to 'iaactools.safe_save_json' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "result.update",
+      "message": "Cross-package call to 'result.update' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "logger.debug",
+      "message": "Cross-package call to 'logger.debug' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "boto3.Session",
+      "message": "Cross-package call to 'boto3.Session' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase1_init.run",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "callee": "logger.warning",
+      "message": "Cross-package call to 'logger.warning' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "callee": "s3.head_bucket",
+      "message": "Cross-package call to 's3.head_bucket' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "callee": "datetime.utcnow",
+      "message": "Cross-package call to 'datetime.utcnow' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "callee": "cfg.get",
+      "message": "Cross-package call to 'cfg.get' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "callee": "logger.error",
+      "message": "Cross-package call to 'logger.error' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "callee": "session.client",
+      "message": "Cross-package call to 'session.client' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "callee": "iaactools.safe_save_json",
+      "message": "Cross-package call to 'iaactools.safe_save_json' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "callee": "s3.upload_file",
+      "message": "Cross-package call to 's3.upload_file' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "callee": "result.update",
+      "message": "Cross-package call to 'result.update' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "callee": "boto3.Session",
+      "message": "Cross-package call to 'boto3.Session' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "callee": "logger.info",
+      "message": "Cross-package call to 'logger.info' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "cross_package_call",
+      "function": "backup_orchestrator_pkg.phases.phase5_upload.run",
+      "callee": "Path.cwd",
+      "message": "Cross-package call to 'Path.cwd' is forbidden (only 'common' allowed)."
+    },
+    {
+      "kind": "bouncing_call",
+      "a": "backup_orchestrator_pkg.runner.parse_args",
+      "b": "backup_orchestrator_pkg.backup_config_validator.parse_args",
+      "message": "Mutual call detected between 'backup_orchestrator_pkg.runner.parse_args' and 'backup_orchestrator_pkg.backup_config_validator.parse_args'."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowArchitectRoleToAssume",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::212533511020:role/aws-reserved/sso.amazonaws.com/us-east-2/AWSReservedSSO_Architect-us1-RegionLocked_430acddf1e76403c"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}

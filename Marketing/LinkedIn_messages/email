@@ -1,0 +1,22 @@
+Hi [Name],
+
+I hope you don’t mind the direct note. I’m an independent architect working on an AWS-native platform called **IaaC – Infrastructure and Account Continuity**.
+
+Most customers I work with have data backup under control, but very few can reliably answer a harder question:
+
+> “If we lose this AWS account or region, can we reconstruct the *entire* environment – VPCs, IAM, security, compute, storage, and dependencies – in another account or region, in a controlled way?”
+
+IaaC focuses exactly on that: discovering the real state of an AWS environment, generating a **versioned “account manifest”**, and using it both for **full-stack recovery** and for **cloning environments into new accounts/regions**.
+
+I’ve attached:
+
+* a brief **executive pitch** (2 pages), and
+* a short **white paper** outlining the approach and possible alignment with AWS’ resilience / multi-account story.
+
+I’m not looking for a formal endorsement, just an honest reaction: whether this direction makes sense from an AWS perspective, and if you see any obvious gaps or overlaps.
+
+If you’re able to skim them and share a quick thought, I’d really appreciate it.
+
+Best regards,
+Teotoniio Fontana
+[LinkedIn profile URL]

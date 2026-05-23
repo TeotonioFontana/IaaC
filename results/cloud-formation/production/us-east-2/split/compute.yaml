@@ -1,0 +1,251 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Layer: compute'
+Parameters: {}
+Mappings: {}
+Resources:
+  TfBastionServerec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0caae5d90efaa1212
+      InstanceType: t2.micro
+      KeyName: thingsb
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: SgBastionserversg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf_bastion_server
+  TfReverseproxyec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-05e35425d72c1d64d
+      InstanceType: t2.micro
+      KeyName: thingsb
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: Webserverpublicsg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: xvda
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-reverseProxy
+  TfProdMysql1ec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0fdc8d752c8f6a832
+      InstanceType: t2.micro
+      KeyName: thingsb
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: Mysqlprivsg
+      SubnetId:
+        Ref: ThingsbrainPrivsubnet
+      BlockDeviceMappings:
+      - DeviceName: xvda
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/sdb
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-prod-mysql-1
+  TfWebserver1ec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-08eda224ab7296253
+      InstanceType: c6i.large
+      KeyName: thingsb
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: Webserverpublicsg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbk
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdf
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdh
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdj
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: xvdg
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: xvdi
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-webserver-1
+  TfFastapiserverDebian121ec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-04cb93bfeb8924e9a
+      InstanceType: t2.micro
+      KeyName: tf
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: Webserverpublicsg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbf
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbg
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbh
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbj
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbk
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-fastapiserver-debian-12-1
+  TfApiserverDebian121ec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0c90af11c46b1584e
+      InstanceType: t2.micro
+      KeyName: tf
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: ApiServerssg
+      SubnetId:
+        Ref: ThingsbrainPrivsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbf
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbg
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbh
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbi
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbj
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbk
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-apiserver-debian-12-1
+  TfWebserverDebian121ec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-02da2f5b47450f5a8
+      InstanceType: t2.micro
+      KeyName: tf
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: Webserverpublicsg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: true
+      - DeviceName: /dev/xvdbf
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbg
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbh
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbj
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbk
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-webserver-debian-12-1
+  TfHelperec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0b016c703b95ecbe4
+      InstanceType: t3.micro
+      KeyName: tf
+      SecurityGroupIds:
+      - Ref: HelperSgsg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: true
+      Tags:
+      - Key: Name
+        Value: tf-helper
+  TfNodeserverDebian131ec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-057c053fc857cd01f
+      InstanceType: t3.micro
+      KeyName: tf
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/TF_Debian_Instances
+      SecurityGroupIds:
+      - Ref: Webserverpublicsg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/sdb
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/sdc
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/sdd
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/sde
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/sdf
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-nodeserver-debian-13-1
+Outputs: {}

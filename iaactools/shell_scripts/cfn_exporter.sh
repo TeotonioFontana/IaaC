@@ -1,0 +1,1 @@
+python3 cfn_exporter.py --region us-east-2 --stack-name tf-stack --output /Users/teotonio/Projetos/IaaC/iaactools/cloud-formation/production/us-east-2/tf-stack.yaml

@@ -1,0 +1,56 @@
+{
+  "PermissionSetArn": "arn:aws:sso:::permissionSet/ssoins-6684b776b34e737d/ps-d40740904281e333",
+  "Describe": {
+    "Name": "Architect-us1-RegionLocked",
+    "PermissionSetArn": "arn:aws:sso:::permissionSet/ssoins-6684b776b34e737d/ps-d40740904281e333",
+    "CreatedDate": "2025-10-11T11:11:51.658000-03:00",
+    "SessionDuration": "PT8H",
+    "RelayState": "https://console.aws.amazon.com/"
+  },
+  "InlinePolicy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "DenyOutsideUsEast1ExceptListed",
+        "Effect": "Deny",
+        "NotAction": [
+          "ec2:Describe*",
+          "ec2:Get*",
+          "ec2:CreateSnapshot",
+          "ec2:CreateTags"
+        ],
+        "Resource": "*",
+        "Condition": {
+          "StringNotEquals": {
+            "aws:RequestedRegion": "us-east-1"
+          }
+        }
+      },
+      {
+        "Sid": "AllowMinimalBackupInUsEast2",
+        "Effect": "Allow",
+        "Action": [
+          "ec2:Describe*",
+          "ec2:Get*",
+          "ec2:CreateSnapshot",
+          "ec2:CreateTags"
+        ],
+        "Resource": "*",
+        "Condition": {
+          "StringEquals": {
+            "aws:RequestedRegion": "us-east-2"
+          }
+        }
+      }
+    ]
+  },
+  "ManagedPolicies": [
+    {
+      "Name": "AdministratorAccess",
+      "Arn": "arn:aws:iam::aws:policy/AdministratorAccess"
+    }
+  ],
+  "AccountsProvisioned": [
+    "212533511020"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "profile": null,
+  "src_region": "us-east-2",
+  "dst_region": "us-east-1",
+  "states": "in-use,available",
+
+  "filter_tag": [],
+  "tag": ["Project=IaaC"],
+
+  "backup_type": "snapshot",
+
+  "helper_instance_id": null,
+  "fullvol_s3_bucket": null,
+  "fullvol_s3_prefix": "ebs-full/",
+  "fullvol_format": "raw.gz",
+  "fullvol_keep_temp_volume": false,
+
+  "encrypt_dst": true,
+  "kms_key_id": null,
+  "delete_src_after_copy": false,
+
+  "ssm_inspect": false,
+  "verbose": true,
+  "yes": false,
+
+  "log_file": "results/backup-log.json",
+  "log_json": true,
+  "log_json_array": false,
+  "log_level": "INFO",
+  "manifest_file": "results/ebs_backup_manifest.json",
+
+  "s3_bucket": "tf-backup",
+  "s3_prefix": "ebs-backups/",
+  "s3_region": "us-east-1",
+  "s3_storage_class": "DEEP_ARCHIVE",
+
+  "s3_storage_class_choices": [
+    "STANDARD",
+    "STANDARD_IA",
+    "ONEZONE_IA",
+    "INTELLIGENT_TIERING",
+    "GLACIER_IR",
+    "GLACIER",
+    "DEEP_ARCHIVE",
+    "EXPRESS_ONEZONE",
+    "OUTPOSTS",
+    "SNOW",
+    "FSX_OPENZFS",
+    "REDUCED_REDUNDANCY"
+  ]
+}

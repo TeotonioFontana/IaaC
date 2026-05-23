@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="01 Exporter" type="PythonConfigurationType" factoryName="Python">
+    <module name="aws-stack-export" />
+    <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cfn_exporter.py" />
+    <option name="PARAMETERS" value="--stack-name ProdExport --output exported_stack.yaml --regions us-east-1 sa-east-1" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <option name="ADD_CONTENT_ROOTS" value="true" />
+    <option name="ADD_SOURCE_ROOTS" value="true" />
+    <option name="EMULATE_TERMINAL" value="false" />
+    <option name="MODULE_MODE" value="false" />
+    <envs>
+      <env name="AWS_PROFILE" value="default" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>

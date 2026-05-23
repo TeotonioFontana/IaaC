@@ -1,0 +1,40 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    { "Sid": "SSOAdminRead",
+      "Effect": "Allow",
+      "Action": [
+        "sso-admin:ListInstances",
+        "sso-admin:DescribeInstance",
+        "sso-admin:ListPermissionSets",
+        "sso-admin:DescribePermissionSet",
+        "sso-admin:GetInlinePolicyForPermissionSet",
+        "sso-admin:ListManagedPoliciesInPermissionSet",
+        "sso-admin:ListAccountsForProvisionedPermissionSet",
+        "sso-admin:ListAccountAssignments",
+        "sso-admin:ListPermissionSetProvisioningStatus"
+      ],
+      "Resource": "*"
+    },
+    { "Sid": "IdentityStoreRead",
+      "Effect": "Allow",
+      "Action": [
+        "identitystore:ListUsers",
+        "identitystore:DescribeUser",
+        "identitystore:ListGroups",
+        "identitystore:DescribeGroup",
+        "identitystore:ListGroupMemberships",
+        "identitystore:DescribeGroupMembership"
+      ],
+      "Resource": "*"
+    },
+    { "Sid": "OrgsReadOptional",
+      "Effect": "Allow",
+      "Action": [
+        "organizations:DescribeOrganization",
+        "organizations:ListAccounts"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

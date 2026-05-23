@@ -1,0 +1,70 @@
+[
+  {
+    "UserName": "tf-backup",
+    "UserId": "31dbf5c0-4061-70e0-6287-c268fed6cd75",
+    "Name": {
+      "FamilyName": "A Fontana",
+      "GivenName": "Teotonio"
+    },
+    "DisplayName": "Teotonio A Fontana",
+    "Emails": [
+      {
+        "Value": "backup@tfontana.com.br",
+        "Type": "work",
+        "Primary": true
+      }
+    ],
+    "IdentityStoreId": "d-9a671b8524"
+  },
+  {
+    "UserName": "tf-sheriff",
+    "UserId": "51eb0520-1081-70eb-0404-4b0278f4470c",
+    "Name": {
+      "FamilyName": "Fontana",
+      "GivenName": "Teotonio"
+    },
+    "DisplayName": "Teotonio Fontana",
+    "Emails": [
+      {
+        "Value": "teotonio@tfontana.com.br",
+        "Type": "work",
+        "Primary": true
+      }
+    ],
+    "IdentityStoreId": "d-9a671b8524"
+  },
+  {
+    "UserName": "tf_doc",
+    "UserId": "710b65e0-1011-7025-8b35-d256a8b16234",
+    "Name": {
+      "FamilyName": "Fontana",
+      "GivenName": "Teotonio"
+    },
+    "DisplayName": "TF DOC",
+    "Emails": [
+      {
+        "Value": "tf_doc@tfontana.com.br",
+        "Type": "work",
+        "Primary": true
+      }
+    ],
+    "IdentityStoreId": "d-9a671b8524"
+  },
+  {
+    "UserName": "tf-architect",
+    "UserId": "e1cb05e0-b0c1-70e8-19d5-ca29bb7f3e16",
+    "Name": {
+      "FamilyName": "A Fontana",
+      "GivenName": "Teotonio"
+    },
+    "DisplayName": "Teotonio A Fontana",
+    "Emails": [
+      {
+        "Value": "architect@tfontana.com.br",
+        "Type": "work",
+        "Primary": true
+      }
+    ],
+    "IdentityStoreId": "d-9a671b8524"
+  }
+]

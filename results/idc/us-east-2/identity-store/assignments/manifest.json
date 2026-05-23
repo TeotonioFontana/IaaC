@@ -1,0 +1,17 @@
+{
+  "Script": "SSO Assignments Exporter",
+  "Version": "0.3.1",
+  "RunTimeUTC": "2025-10-23T02:47:21Z",
+  "Region": "us-east-2",
+  "InstanceArn": "arn:aws:sso:::instance/ssoins-6684b776b34e737d",
+  "Outputs": {
+    "permission_sets": "/Users/teotonio/Projetos/IaaC/results/idc/us-east-2/identity-store/assignments/permission-sets.json",
+    "accounts": "/Users/teotonio/Projetos/IaaC/results/idc/us-east-2/identity-store/assignments/accounts.json",
+    "by_account_dir": "/Users/teotonio/Projetos/IaaC/results/idc/us-east-2/identity-store/assignments/by-account"
+  },
+  "Counts": {
+    "PermissionSets": 2,
+    "AccountsWithAssignments": 1,
+    "AssignmentFiles": 1
+  }
+}

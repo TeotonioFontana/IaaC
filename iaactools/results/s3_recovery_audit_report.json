@@ -1,0 +1,54 @@
+{
+  "RunId": "20251030T132745Z",
+  "Bucket": "my-company-backups",
+  "Manifest": "OK",
+  "Logs": "MISSING",
+  "Volumes": {
+    "vol-simulated": "OK"
+  },
+  "Snapshots": {
+    "snap-simulated": "OK"
+  },
+  "CompletenessScore": 100.0,
+  "Simulate": true,
+  "TimestampUTC": "2025-11-01T02:09:45Z",
+  "DetailLevel": "summary",
+  "Structure": {
+    "discover": {
+      "Objects": 0,
+      "Exists": true
+    },
+    "plan": {
+      "Objects": 0,
+      "Exists": true
+    },
+    "prep": {
+      "Objects": 0,
+      "Exists": true
+    },
+    "backup": {
+      "Objects": 0,
+      "Exists": true
+    },
+    "manifest": {
+      "Objects": 0,
+      "Exists": true
+    },
+    "logs": {
+      "Objects": 0,
+      "Exists": true
+    },
+    "artifacts": {
+      "Objects": 0,
+      "Exists": true
+    },
+    "indexes": {
+      "Objects": 0,
+      "Exists": true
+    },
+    "latest": {
+      "Objects": 0,
+      "Exists": true
+    }
+  }
+}

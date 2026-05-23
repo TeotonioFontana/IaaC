@@ -1,0 +1,911 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Exported stack tf-stack (best-effort)
+Parameters: {}
+Mappings: {}
+Resources:
+  Thingsbrainvpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      Tags:
+      - Key: aws:cloudformation:stack-id
+        Value: arn:aws:cloudformation:us-east-2:212533511020:stack/TFontana/9c624500-416d-11ed-83ae-0ace7357f858
+      - Key: aws:cloudformation:stack-name
+        Value: TFontana
+      - Key: Name
+        Value: thingsBrain
+      - Key: aws:cloudformation:logical-id
+        Value: ec2d4da457
+  Thingsbraingatewayigw:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name
+        Value: thingsBrainGateway
+  Thingsbraingatewayigwattachthingsbrainvpc:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId:
+        Ref: Thingsbrainvpc
+      InternetGatewayId:
+        Ref: Thingsbraingatewayigw
+  ThingsbrainPublicsubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.0.0/24
+      VpcId:
+        Ref: Thingsbrainvpc
+      AvailabilityZone: us-east-2c
+      MapPublicIpOnLaunch: false
+      Tags:
+      - Key: aws:cloudformation:stack-id
+        Value: arn:aws:cloudformation:us-east-2:212533511020:stack/TFontana/9c624500-416d-11ed-83ae-0ace7357f858
+      - Key: Name
+        Value: thingsBrain-public
+      - Key: aws:cloudformation:logical-id
+        Value: ec2d25cd8d
+      - Key: aws:cloudformation:stack-name
+        Value: TFontana
+  ThingsbrainPrivsubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.1.0/24
+      VpcId:
+        Ref: Thingsbrainvpc
+      AvailabilityZone: us-east-2c
+      MapPublicIpOnLaunch: false
+      Tags:
+      - Key: Name
+        Value: thingsBrain-priv
+  TfNatgatewayeip:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      Tags:
+      - Key: Name
+        Value: tf-natgateway
+  Reverseproxyeip:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      Tags:
+      - Key: Name
+        Value: reverseProxy
+  TfWebserverapieip:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      Tags:
+      - Key: aws:cloudformation:logical-id
+        Value: EC2EIP
+      - Key: aws:cloudformation:stack-name
+        Value: newstack
+      - Key: Name
+        Value: tf-webserverAPI
+      - Key: aws:cloudformation:stack-id
+        Value: arn:aws:cloudformation:us-east-2:212533511020:stack/newstack/00fde4e0-4413-11ed-9d88-067d92abb968
+  Eipalloc00abc30299a9e8ca8eip:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+  Bastionservereip:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      Tags:
+      - Key: Name
+        Value: BastionServer
+  TfNatnatgw:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      AllocationId:
+        Fn::GetAtt:
+        - TfNatgatewayeip
+        - AllocationId
+      Tags:
+      - Key: Name
+        Value: tf-nat
+  Rtb001ef6b129c69f342rt:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: Thingsbrainvpc
+      Routes:
+      - DestinationCidrBlock: 10.0.0.0/16
+  Thingsbrainpublicrt:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: Thingsbrainvpc
+      Routes:
+      - DestinationCidrBlock: 10.0.0.0/16
+      - DestinationCidrBlock: 0.0.0.0/0
+        GatewayId:
+          Ref: Thingsbraingatewayigw
+  Thingsbrainpublicrtassocthingsbrainpublicsubnet:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: Thingsbrainpublicrt
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+  Thingsbrainprivatert:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: Thingsbrainvpc
+      Routes:
+      - DestinationCidrBlock: 10.0.0.0/16
+      - DestinationCidrBlock: 0.0.0.0/0
+        NatGatewayId:
+          Ref: TfNatnatgw
+  Thingsbrainprivatertassocthingsbrainprivsubnet:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: Thingsbrainprivatert
+      SubnetId:
+        Ref: ThingsbrainPrivsubnet
+  Webserverpublicsg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: access to ws
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: webServerPublic
+      GroupName: ws-sg
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 8157
+        ToPort: 8157
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8080
+        ToPort: 8080
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 995
+        ToPort: 995
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: icmpv6
+        FromPort: -1
+        ToPort: -1
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 143
+        ToPort: 143
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8006
+        ToPort: 8006
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: icmp
+        FromPort: -1
+        ToPort: -1
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8051
+        ToPort: 8054
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 110
+        ToPort: 110
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 21
+        ToPort: 21
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 25
+        ToPort: 25
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8002
+        ToPort: 8002
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8005
+        ToPort: 8005
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8001
+        ToPort: 8001
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8004
+        ToPort: 8004
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8191
+        ToPort: 8191
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8056
+        ToPort: 8056
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8156
+        ToPort: 8156
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 465
+        ToPort: 465
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 443
+        ToPort: 443
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8000
+        ToPort: 8000
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 993
+        ToPort: 993
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8003
+        ToPort: 8003
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8100
+        ToPort: 8102
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8010
+        ToPort: 8010
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8158
+        ToPort: 8158
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  Lixosg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: MQL access on private net
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: lixo
+      GroupName: mySQLpriv-2
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 1433
+        ToPort: 1433
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: tcp
+        FromPort: 3307
+        ToPort: 3307
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: tcp
+        FromPort: 3306
+        ToPort: 3306
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: icmp
+        FromPort: -1
+        ToPort: -1
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: null
+        IpRanges:
+        - CidrIp: 0.0.0.0/0
+        - CidrIp: 0.0.0.0/16
+  ApiServerssg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: allow access from ssh and from web servers on port 8100
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: api-servers
+      GroupName: api-servers
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 10.0.0.153/32
+      - IpProtocol: tcp
+        FromPort: 8100
+        ToPort: 8100
+        CidrIp: null
+        IpRanges:
+        - CidrIp: 10.0.0.124/32
+        - CidrIp: 10.0.0.153/32
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 0
+        ToPort: 0
+        CidrIp: 0.0.0.0/16
+  HelperSgsg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security group for the helper instance
+      VpcId:
+        Ref: Thingsbrainvpc
+      GroupName: helper-sg
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  Lixosg2:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: default VPC security group
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: lixo
+      GroupName: default
+      SecurityGroupIngress:
+      - IpProtocol: '-1'
+        SourceSecurityGroupId: sg-0f139b898b1f42a46
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  Lixosg3:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Public access to mysql
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: lixo
+      GroupName: mySQL-pub
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 1433
+        ToPort: 1433
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 3307
+        ToPort: 3307
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 3306
+        ToPort: 3306
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: icmp
+        FromPort: -1
+        ToPort: -1
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: null
+        IpRanges:
+        - CidrIp: 0.0.0.0/0
+        - CidrIp: 0.0.0.0/16
+  Lixosg4:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: public acess for webserver 2
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: lixo
+      GroupName: ws-sg-2
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8001
+        ToPort: 8001
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8080
+        ToPort: 8080
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8004
+        ToPort: 8004
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 995
+        ToPort: 995
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: icmpv6
+        FromPort: -1
+        ToPort: -1
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8191
+        ToPort: 8191
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 143
+        ToPort: 143
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 465
+        ToPort: 465
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: icmp
+        FromPort: -1
+        ToPort: -1
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 443
+        ToPort: 443
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8051
+        ToPort: 8053
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 110
+        ToPort: 110
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 993
+        ToPort: 993
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8000
+        ToPort: 8000
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 21
+        ToPort: 21
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 25
+        ToPort: 25
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 8003
+        ToPort: 8003
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8002
+        ToPort: 8002
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8100
+        ToPort: 8102
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8005
+        ToPort: 8005
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 8010
+        ToPort: 8010
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  Lixosg5:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: launch-wizard-3 created 2023-05-19T16:49:57.685Z
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: lixo
+      GroupName: launch-wizard-3
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  Lixosg6:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: launch-wizard-4 created 2023-05-23T13:45:03.166Z
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: lixo
+      GroupName: launch-wizard-4
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  SgBastionserversg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: launch-wizard-1 created 2022-10-01T10:28:53.021Z
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: sg-bastionServer
+      GroupName: launch-wizard-1
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 443
+        ToPort: 443
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+      - IpProtocol: icmp
+        FromPort: -1
+        ToPort: -1
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+        CidrIpv6: ::/0
+  LaunchWizard2sg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: launch-wizard-2 created 2025-09-05T12:14:46.662Z
+      VpcId:
+        Ref: Thingsbrainvpc
+      GroupName: launch-wizard-2
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 443
+        ToPort: 443
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: 0.0.0.0/0
+  Mysqlprivsg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: mySQL-priv created 2022-10-04T17:21:02.759Z
+      VpcId:
+        Ref: Thingsbrainvpc
+      Tags:
+      - Key: Name
+        Value: mySQLPriv
+      GroupName: mySQL-priv
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 1433
+        ToPort: 1433
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: tcp
+        FromPort: 3307
+        ToPort: 3307
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: tcp
+        FromPort: 3306
+        ToPort: 3306
+        CidrIp: 10.0.0.0/16
+      - IpProtocol: icmp
+        FromPort: -1
+        ToPort: -1
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: '-1'
+        CidrIp: null
+        IpRanges:
+        - CidrIp: 0.0.0.0/0
+        - CidrIp: 0.0.0.0/16
+  TfBastionServerec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0caae5d90efaa1212
+      InstanceType: t2.micro
+      KeyName: thingsb
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: SgBastionserversg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf_bastion_server
+  TfReverseproxyec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-05e35425d72c1d64d
+      InstanceType: t2.micro
+      KeyName: thingsb
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: Webserverpublicsg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: xvda
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-reverseProxy
+  TfProdMysql1ec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0fdc8d752c8f6a832
+      InstanceType: t2.micro
+      KeyName: thingsb
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: Mysqlprivsg
+      SubnetId:
+        Ref: ThingsbrainPrivsubnet
+      BlockDeviceMappings:
+      - DeviceName: xvda
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/sdb
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-prod-mysql-1
+  TfWebserver1ec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-08eda224ab7296253
+      InstanceType: c6i.large
+      KeyName: thingsb
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: Webserverpublicsg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbk
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdf
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdh
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdj
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: xvdg
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: xvdi
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-webserver-1
+  TfFastapiserverDebian121ec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-04cb93bfeb8924e9a
+      InstanceType: t2.micro
+      KeyName: tf
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: Webserverpublicsg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbf
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbg
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbh
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbj
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbk
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-fastapiserver-debian-12-1
+  TfApiserverDebian121ec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0c90af11c46b1584e
+      InstanceType: t2.micro
+      KeyName: tf
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: ApiServerssg
+      SubnetId:
+        Ref: ThingsbrainPrivsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbf
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbg
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbh
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbi
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbj
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbk
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-apiserver-debian-12-1
+  TfWebserverDebian121ec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-02da2f5b47450f5a8
+      InstanceType: t2.micro
+      KeyName: tf
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/AmazonSSMRoleForInstancesQuickSetup
+      SecurityGroupIds:
+      - Ref: Webserverpublicsg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: true
+      - DeviceName: /dev/xvdbf
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbg
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbh
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbj
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/xvdbk
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-webserver-debian-12-1
+  TfHelperec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0b016c703b95ecbe4
+      InstanceType: t3.micro
+      KeyName: tf
+      SecurityGroupIds:
+      - Ref: HelperSgsg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: true
+      Tags:
+      - Key: Name
+        Value: tf-helper
+  TfNodeserverDebian131ec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-057c053fc857cd01f
+      InstanceType: t3.micro
+      KeyName: tf
+      IamInstanceProfile: arn:aws:iam::212533511020:instance-profile/TF_Debian_Instances
+      SecurityGroupIds:
+      - Ref: Webserverpublicsg
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/sdb
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/sdc
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/sdd
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/sde
+        Ebs:
+          DeleteOnTermination: false
+      - DeviceName: /dev/sdf
+        Ebs:
+          DeleteOnTermination: false
+      Tags:
+      - Key: Name
+        Value: tf-nodeserver-debian-13-1
+Outputs: {}

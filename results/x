@@ -1,0 +1,1 @@
+--input Users/teotonio/Projetos/IaaC/iaactools/results/tf-stack.yaml --output /Users/teotonio/Projetos/IaaC/iaactools/results --backup-region us-east-2 /Users/teotonio/Projetos/IaaC/iaactools/results/tf-stack.yaml --backup-path s3://tf-cloudformation/cfn

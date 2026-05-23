@@ -1,0 +1,15 @@
+profile: architect
+region: us-east-2             # IAM Identity Center HOME region
+instance_arn: arn:aws:sso:::instance/ssoins-xxxx
+identity_store_id: d-xxxxxxxxxx
+assume: arn:aws:iam::111111111111:role/SSOExportReadOnly
+assume_sts_region: us-east-1
+preview: false
+simulate: false
+
+# S3 mirror (new)
+s3_bucket: 212533511020-idc-dr
+s3_prefix: idc-snapshots/
+s3_region: us-east-1
+s3_storage_class: DEEP_ARCHIVE
+s3_kms_key_id: arn:aws:kms:us-east-1:999999999999:key/abcd-...

@@ -1,0 +1,42 @@
+{
+  "profile": "architect",
+  "src_region": "us-east-2",
+  "dst_region": "us-east-1",
+  "states": "in-use",
+
+  "filter_tag": [],
+  "tag": ["Project=IaaC", "BackupPlan=monthly"],
+
+  "backup_type": "full-volume",
+
+  "helper_instance_id": "i-082d29caa91949342",
+  "fullvol_s3_bucket": "212533511020-tf-iaac",
+  "fullvol_s3_prefix": null,
+  "fullvol_format": "raw.gz",
+  "fullvol_keep_temp_volume": false,
+
+  "encrypt_dst": true,
+  "kms_key_id": "arn:aws:kms:us-east-1:212533511020:key/00e97682-e08d-43f1-8aef-d470183e4c4a",
+  "delete_src_after_copy": false,
+
+  "ssm_inspect": false,
+  "verbose": true,
+  "yes": true,
+
+  "log_file": "results/log/backup-log.json",
+  "log_json": true,
+  "log_json_array": false,
+  "log_level": "INFO",
+  "manifest_file": "results/ebs_backup_manifest.json",
+
+  "s3_bucket": "212533511020-tf-iaac",
+  "s3_prefix": "tf-volumes/",
+  "s3_region": "us-east-1",
+  "s3_storage_class": "INTELLIGENT_TIERING",
+
+  "s3_storage_class_choices": [
+    "STANDARD","STANDARD_IA","ONEZONE_IA","INTELLIGENT_TIERING",
+    "GLACIER_IR","GLACIER","DEEP_ARCHIVE","EXPRESS_ONEZONE",
+    "OUTPOSTS","SNOW","FSX_OPENZFS","REDUCED_REDUNDANCY"
+  ]
+}

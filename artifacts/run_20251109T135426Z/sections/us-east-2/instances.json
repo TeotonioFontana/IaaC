@@ -1,0 +1,65 @@
+[
+  {
+    "id": "i-00981d86938fe5dea",
+    "name": "tf_bastion_server",
+    "state": "running",
+    "az": "us-east-2c",
+    "type": "t2.micro"
+  },
+  {
+    "id": "i-0ff77c25c4c372728",
+    "name": "tf-reverseProxy",
+    "state": "running",
+    "az": "us-east-2c",
+    "type": "t2.micro"
+  },
+  {
+    "id": "i-0939d291826277800",
+    "name": "tf-prod-mysql-1",
+    "state": "running",
+    "az": "us-east-2c",
+    "type": "t2.micro"
+  },
+  {
+    "id": "i-0630cf3424a3f3b1a",
+    "name": "tf-webserver-1",
+    "state": "stopped",
+    "az": "us-east-2c",
+    "type": "c6i.large"
+  },
+  {
+    "id": "i-028b660abc1f3482b",
+    "name": "tf-fastapiserver-debian-12-1",
+    "state": "stopped",
+    "az": "us-east-2c",
+    "type": "t2.micro"
+  },
+  {
+    "id": "i-0971b9497671c1067",
+    "name": "tf-apiserver-debian-12-1",
+    "state": "running",
+    "az": "us-east-2c",
+    "type": "t2.micro"
+  },
+  {
+    "id": "i-00207de7bcc21ccab",
+    "name": "tf-webserver-debian-12-1",
+    "state": "running",
+    "az": "us-east-2c",
+    "type": "t2.micro"
+  },
+  {
+    "id": "i-00704ef40a3b71829",
+    "name": "tf-helper",
+    "state": "stopped",
+    "az": "us-east-2c",
+    "type": "t3.micro"
+  },
+  {
+    "id": "i-031246fe36424fece",
+    "name": "tf-nodeserver-debian-13-1",
+    "state": "stopped",
+    "az": "us-east-2c",
+    "type": "t3.micro"
+  }
+]

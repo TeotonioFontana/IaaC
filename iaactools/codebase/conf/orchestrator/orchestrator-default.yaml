@@ -1,0 +1,49 @@
+# =====================================================================
+# orchestrator-default.yaml — Unified Backup Orchestrator (Default)
+# =====================================================================
+# Purpose: Default configuration for IaacTools backup orchestrator.
+# Supports snapshot and full-volume backups with IAM role assumption.
+# =====================================================================
+
+profile: architect
+region: us-east-2
+home_region: us-east-2
+tools_dir: /Users/teotonio/Projetos/IaaC/iaactools/codebase
+out_root: /Users/teotonio/Projetos/IaaC/results
+log_dir: /Users/teotonio/Projetos/IaaC/results/logs
+
+# ---- IAM / Identity Center ----
+instance_arn: arn:aws:sso:::instance/ssoins-6684b776b34e737d
+identity_store_id: d-9a671b8524
+assume_role: arn:aws:iam::212533511020:role/SSOExportReadOnly
+assume_sts_region: us-east-1
+
+# ---- Backup Mode ----
+backup_type: snapshot       # snapshot | full-volume | both
+simulate: false
+preview: false
+keep_going: false
+dry_run: false
+
+# ---- EBS Backup Settings ----
+ebs_backup:
+  region: us-east-2
+  tags_filter:
+    Backup: "true"
+  exclude_instance_ids: []
+  snapshot_options:
+    description_prefix: "FullBackup"
+    retain_days: 14
+  notification:
+    sns_topic_arn: ""
+
+# ---- Output and Reporting ----
+s3_upload: true
+s3_bucket: my-company-backups
+s3_prefix: orchestrator/
+manifest_prefix: manifests/
+log_prefix: logs/
+
+# ---- Misc ----
+timestamp_format: "%Y-%m-%dT%H:%M:%SZ"
+log_level: INFO

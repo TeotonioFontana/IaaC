@@ -1,0 +1,68 @@
+
+digraph AuditRecoveryMap {
+    rankdir=TB;
+    splines=true;
+    bgcolor="#FFFFFF";
+    fontname="Helvetica";
+
+    node [shape=box style=filled fontname="Helvetica" fontsize=10];
+
+    subgraph cluster_ai {
+        label="AI Sentinel — Continuous Intelligence";
+        color="#003366"; fontcolor="#003366"; style="rounded,dashed";
+
+        s1 [label="S1. AWS Policy Feed\n(Release Notes, Deprecations)", fillcolor="#E8EEF8"];
+        s2 [label="S2. Resilience Advisor\n(Config vs. AWS evolution)", fillcolor="#E8EEF8"];
+        s3 [label="S3. Predictive Integrity Model\n(Score decay monitoring)", fillcolor="#E8EEF8"];
+
+        s1 -> s2 -> s3;
+    }
+
+    subgraph cluster_audit {
+        label="Audit Pipeline — Integrity & Compliance";
+        color="#2B547E"; fontcolor="#2B547E"; style="rounded";
+
+        a1 [label="A1. Discovery Phase\nValidate S3 structure (discover→latest)", fillcolor="#DAE8FC"];
+        a2 [label="A2. Manifest Phase\nLoad & verify manifest.json", fillcolor="#DAE8FC"];
+        a3 [label="A3. Snapshot/FullVolume Validation", fillcolor="#DAE8FC"];
+        a4 [label="A4. Log & Index Validation", fillcolor="#DAE8FC"];
+        a5 [label="A5. Structure Audit\nPrefix drift, orphan check", fillcolor="#DAE8FC"];
+        a6 [label="A6. Reporting Phase\nJSON/PDF generation + upload", fillcolor="#DAE8FC"];
+        a7 [label="A7. Resilience Check\nIAM/KMS limits + AWS API drift", fillcolor="#DAE8FC"];
+
+        a1 -> a2 -> a3 -> a4 -> a5 -> a6 -> a7;
+    }
+
+    subgraph cluster_recovery {
+        label="Recovery Pipeline — Operational Rebuild";
+        color="#888888"; fontcolor="#333333"; style="rounded";
+
+        r1 [label="R1. Pre-Recovery Audit", fillcolor="#F5F5F5"];
+        r2 [label="R2. Region-Level Recovery\nCross-region restore", fillcolor="#F5F5F5"];
+        r3 [label="R3. Service/Resource Recovery\nEC2, EBS, S3 recreation", fillcolor="#F5F5F5"];
+        r4 [label="R4. Data-Level Recovery\nChecksum & mount validation", fillcolor="#F5F5F5"];
+        r5 [label="R5. Account-Level (Phoenix) Recovery\nRebuild lost AWS account", fillcolor="#FFF2CC"];
+        r6 [label="R6. Post-Recovery Validation\nCompare with baseline audit", fillcolor="#F5F5F5"];
+
+        r1 -> r2 -> r3 -> r4 -> r5 -> r6;
+    }
+
+    subgraph cluster_outputs {
+        label="Outputs & Persistence";
+        color="#A7C7E7"; fontcolor="#003366"; style="rounded";
+
+        o1 [label="JSON Reports", fillcolor="#E3F2FD"];
+        o2 [label="PDF Reports", fillcolor="#E3F2FD"];
+        o3 [label="S3 Uploads\n/audits/<run_id>/", fillcolor="#E3F2FD"];
+        o4 [label="Resilience Ledger (hyperadm)", fillcolor="#E3F2FD"];
+    }
+
+    s3 -> a1 [color="#003366" style=dashed label=" AI triggers audit " fontcolor="#003366"];
+    a7 -> r1 [color="#2B547E" label=" Audit validates recovery readiness " fontcolor="#2B547E"];
+    r6 -> a1 [color="#888888" label=" Post-recovery re-audit " fontcolor="#555555"];
+    a6 -> o1;
+    a6 -> o2;
+    a6 -> o3;
+    a7 -> o4;
+    r6 -> o4;
+}

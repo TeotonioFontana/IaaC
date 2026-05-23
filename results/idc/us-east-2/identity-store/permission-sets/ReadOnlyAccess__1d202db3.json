@@ -1,0 +1,14 @@
+{
+  "Arn": "arn:aws:sso:::permissionSet/ssoins-6684b776b34e737d/ps-891851fa010ed2ac",
+  "Name": "ReadOnlyAccess",
+  "Description": "Used to scan AWS to generate documentation, only.",
+  "SessionDuration": "PT4H",
+  "RelayState": null,
+  "CreatedDate": "2025-09-25T10:50:02.361000-03:00",
+  "InlinePolicy": "",
+  "ManagedPolicyArns": [
+    "arn:aws:iam::aws:policy/ReadOnlyAccess"
+  ],
+  "CustomerManagedPolicyRefs": [],
+  "Tags": {}
+}

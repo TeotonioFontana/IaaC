@@ -1,0 +1,6 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Exported stack (placeholder) – run cfn_exporter.py in your AWS account to generate a real template."
+Parameters: {}
+Mappings: {}
+Resources: {}
+Outputs: {}

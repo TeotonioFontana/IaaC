@@ -1,0 +1,5 @@
+profile: architect
+region: us-east-2
+dst_region: us-east-1
+preview: false
+simulate: false

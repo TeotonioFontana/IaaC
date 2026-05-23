@@ -1,0 +1,21 @@
+# =====================================================================
+# orchestrator-preview.yaml — Preview Mode (Safe)
+# =====================================================================
+# Purpose: Only validates configuration and lists discovered resources.
+# No actual snapshots or S3 uploads are performed.
+# =====================================================================
+
+profile: architect
+region: us-east-2
+home_region: us-east-2
+simulate: false
+preview: true
+keep_going: false
+dry_run: true
+
+backup_type: snapshot
+enable_ebs: false
+enable_ami: false
+
+log_level: INFO
+out_root: /Users/teotonio/Projetos/IaaC/results/preview

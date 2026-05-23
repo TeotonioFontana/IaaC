@@ -1,0 +1,43 @@
+{
+  "IdentityStoreId": "d-9a671b8524",
+  "Count": 7,
+  "Groups": [
+    {
+      "GroupId": "310b6540-d0b1-70f4-8b56-ec444899c1cf",
+      "DisplayName": "tf-dev",
+      "IdentityStoreId": "d-9a671b8524"
+    },
+    {
+      "GroupId": "31fbc530-a0c1-7025-acf1-f85df0581ce8",
+      "DisplayName": "tf-backup",
+      "Description": "Backup, AMI createion and Cloudformation IaaC scripts enabled",
+      "IdentityStoreId": "d-9a671b8524"
+    },
+    {
+      "GroupId": "418bc550-a0b1-70aa-6048-5b6f03153b73",
+      "DisplayName": "tf-stg",
+      "IdentityStoreId": "d-9a671b8524"
+    },
+    {
+      "GroupId": "41fba540-f0b1-70fe-a246-1d5676a50937",
+      "DisplayName": "tf-prod",
+      "IdentityStoreId": "d-9a671b8524"
+    },
+    {
+      "GroupId": "611b05e0-60a1-7034-ec5b-83d84328eb0f",
+      "DisplayName": "tf-admin",
+      "IdentityStoreId": "d-9a671b8524"
+    },
+    {
+      "GroupId": "811bc570-7051-70dd-92ab-2e5afb81cc50",
+      "DisplayName": "tf-us-east-1-only",
+      "Description": "Used to configure us-east-1 region",
+      "IdentityStoreId": "d-9a671b8524"
+    },
+    {
+      "GroupId": "a18b05b0-3061-70b0-3292-93953d80d0bb",
+      "DisplayName": "AWS Stack Managers",
+      "IdentityStoreId": "d-9a671b8524"
+    }
+  ]
+}

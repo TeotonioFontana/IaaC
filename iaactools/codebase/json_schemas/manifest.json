@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "InfrastructureManifest",
+  "type": "object",
+  "required": ["RunId", "TimestampUTC", "Backups"],
+  "properties": {
+    "RunId": { "type": "string", "pattern": "^\\d{8}T\\d{6}Z$" },
+    "TimestampUTC": { "type": "string", "format": "date-time" },
+    "Backups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["VolumeId", "SnapshotId", "Region", "Status"],
+        "properties": {
+          "VolumeId": { "type": "string" },
+          "SnapshotId": { "type": "string" },
+          "Region": { "type": "string" },
+          "SizeGiB": { "type": "integer", "minimum": 1 },
+          "Tags": { "type": "object", "additionalProperties": { "type": "string" } },
+          "Status": { "type": "string", "enum": ["OK", "FAILED", "MISSING"] }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

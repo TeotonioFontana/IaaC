@@ -1,0 +1,151 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Layer: network'
+Parameters: {}
+Mappings: {}
+Resources:
+  Thingsbrainvpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      Tags:
+      - Key: aws:cloudformation:stack-id
+        Value: arn:aws:cloudformation:us-east-2:212533511020:stack/TFontana/9c624500-416d-11ed-83ae-0ace7357f858
+      - Key: aws:cloudformation:stack-name
+        Value: TFontana
+      - Key: Name
+        Value: thingsBrain
+      - Key: aws:cloudformation:logical-id
+        Value: ec2d4da457
+  Thingsbraingatewayigw:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name
+        Value: thingsBrainGateway
+  Thingsbraingatewayigwattachthingsbrainvpc:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId:
+        Ref: Thingsbrainvpc
+      InternetGatewayId:
+        Ref: Thingsbraingatewayigw
+  ThingsbrainPublicsubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.0.0/24
+      VpcId:
+        Ref: Thingsbrainvpc
+      AvailabilityZone: us-east-2c
+      MapPublicIpOnLaunch: false
+      Tags:
+      - Key: aws:cloudformation:stack-id
+        Value: arn:aws:cloudformation:us-east-2:212533511020:stack/TFontana/9c624500-416d-11ed-83ae-0ace7357f858
+      - Key: Name
+        Value: thingsBrain-public
+      - Key: aws:cloudformation:logical-id
+        Value: ec2d25cd8d
+      - Key: aws:cloudformation:stack-name
+        Value: TFontana
+  ThingsbrainPrivsubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.1.0/24
+      VpcId:
+        Ref: Thingsbrainvpc
+      AvailabilityZone: us-east-2c
+      MapPublicIpOnLaunch: false
+      Tags:
+      - Key: Name
+        Value: thingsBrain-priv
+  TfNatgatewayeip:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      Tags:
+      - Key: Name
+        Value: tf-natgateway
+  Reverseproxyeip:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      Tags:
+      - Key: Name
+        Value: reverseProxy
+  TfWebserverapieip:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      Tags:
+      - Key: aws:cloudformation:logical-id
+        Value: EC2EIP
+      - Key: aws:cloudformation:stack-name
+        Value: newstack
+      - Key: Name
+        Value: tf-webserverAPI
+      - Key: aws:cloudformation:stack-id
+        Value: arn:aws:cloudformation:us-east-2:212533511020:stack/newstack/00fde4e0-4413-11ed-9d88-067d92abb968
+  Eipalloc00abc30299a9e8ca8eip:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+  Bastionservereip:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      Tags:
+      - Key: Name
+        Value: BastionServer
+  TfNatnatgw:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+      AllocationId:
+        Fn::GetAtt:
+        - TfNatgatewayeip
+        - AllocationId
+      Tags:
+      - Key: Name
+        Value: tf-nat
+  Rtb001ef6b129c69f342rt:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: Thingsbrainvpc
+      Routes:
+      - DestinationCidrBlock: 10.0.0.0/16
+  Thingsbrainpublicrt:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: Thingsbrainvpc
+      Routes:
+      - DestinationCidrBlock: 10.0.0.0/16
+      - DestinationCidrBlock: 0.0.0.0/0
+        GatewayId:
+          Ref: Thingsbraingatewayigw
+  Thingsbrainpublicrtassocthingsbrainpublicsubnet:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: Thingsbrainpublicrt
+      SubnetId:
+        Ref: ThingsbrainPublicsubnet
+  Thingsbrainprivatert:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: Thingsbrainvpc
+      Routes:
+      - DestinationCidrBlock: 10.0.0.0/16
+      - DestinationCidrBlock: 0.0.0.0/0
+        NatGatewayId:
+          Ref: TfNatnatgw
+  Thingsbrainprivatertassocthingsbrainprivsubnet:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: Thingsbrainprivatert
+      SubnetId:
+        Ref: ThingsbrainPrivsubnet
+Outputs: {}

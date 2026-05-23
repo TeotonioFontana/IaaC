@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://iaac-recovery-suite/json_schemas/environment_manifest_schema.json",
+  "title": "Environment Manifest Schema",
+  "description": "Captures the logical and human context of the backup environment.",
+  "$comment": "v1.1.0 — no breaking changes; added room for recovery checklists and external runbooks.",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "type": "string", "default": "1.1.0" },
+        "owner": { "type": "string" },
+        "generated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["schema_version", "owner"]
+    },
+
+    "Workloads": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Name": { "type": "string" },
+          "Resources": { "type": "array", "items": { "type": "string" } },
+          "Owner": { "type": ["string", "null"] },
+          "Priority": { "type": ["string", "null"] }
+        },
+        "required": ["Name", "Resources"]
+      }
+    },
+
+    "IaC": {
+      "type": "object",
+      "properties": {
+        "TemplateHash": { "type": ["string", "null"] },
+        "CommitId": { "type": ["string", "null"] },
+        "Repository": { "type": ["string", "null"] }
+      }
+    },
+
+    "Dependencies": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+
+    "OperatorNotes": { "type": ["string", "null"] },
+
+    "RecoveryChecklistVersion": { "type": ["string", "null"] },
+
+    "ExternalRunbooks": {
+      "type": "array",
+      "$comment": "Room for URLs or S3-keys of human runbooks used by ops.",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["meta"],
+  "additionalProperties": false
+}

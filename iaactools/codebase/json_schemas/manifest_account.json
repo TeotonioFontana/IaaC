@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AccountManifest",
+  "type": "object",
+  "required": ["AccountId", "EnabledRegions", "KMS_Keys", "ServiceQuotas"],
+  "properties": {
+    "AccountId": { "type": "string", "pattern": "^\\d{12}$" },
+    "EnabledRegions": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z]{2}-[a-z]+-\\d$" }
+    },
+    "KMS_Keys": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^arn:aws:kms:.+$" }
+    },
+    "ServiceQuotas": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "IAMSummary": {
+      "type": "object",
+      "properties": {
+        "Users": { "type": "integer" },
+        "Roles": { "type": "integer" },
+        "Policies": { "type": "integer" }
+      }
+    },
+    "Version": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

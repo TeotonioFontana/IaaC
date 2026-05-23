@@ -1,0 +1,46 @@
+{
+  "version": "v0.2.1",
+  "started_utc": "2025-10-30T01:17:21Z",
+  "source_region": "us-east-2",
+  "home_region": "us-east-2",
+  "profile": "architect",
+  "mode": "simulate",
+  "enabled_modules": [
+    "sso_exporter",
+    "sso_assignments_exporter",
+    "cfn_exporter",
+    "cfn_splitter",
+    "ebs_backup",
+    "ami_build"
+  ],
+  "steps": [
+    {
+      "name": "IDC Export (sso_exporter)",
+      "ok": false,
+      "returncode": 2,
+      "cmd": [
+        "/Users/teotonio/Projetos/IaaC/.venv/bin/python3",
+        "/Users/teotonio/Projetos/IaaC/iaactools/codebase/sso_exporter.py",
+        "--region",
+        "us-east-2",
+        "--out-dir",
+        "/Users/teotonio/Projetos/IaaC/results/idc/us-east-2/identity-store",
+        "--config",
+        "/Users/teotonio/Projetos/IaaC/iaactools/conf/prod/sso_exporter.yaml",
+        "--instance-arn",
+        "arn:aws:sso:::instance/ssoins-6684b776b34e737d",
+        "--identity-store-id",
+        "d-9a671b8524",
+        "--assume",
+        "arn:aws:iam::212533511020:role/SSOExportReadOnly",
+        "--assume-sts-region",
+        "us-east-1"
+      ],
+      "cwd": "/Users/teotonio/Projetos/IaaC/iaactools/codebase",
+      "started": "2025-10-30T01:17:21Z",
+      "ended": "2025-10-30T01:17:21Z",
+      "notes": {}
+    }
+  ],
+  "ended_utc": "2025-10-30T01:17:21Z"
+}

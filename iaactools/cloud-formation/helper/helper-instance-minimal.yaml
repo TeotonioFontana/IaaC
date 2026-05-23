@@ -1,0 +1,241 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Helper EC2 (SSM-only) that uses existing VPC resources (Subnet + SG)
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: helper
+  SubnetId:
+    Type: AWS::EC2::Subnet::Id
+    Description: Public subnet ID from the VPC stack (auto-assigns public IP)
+  SecurityGroupId:
+    Type: AWS::EC2::SecurityGroup::Id
+    Description: Egress-only SG ID from the VPC stack (no inbound rules)
+  InstanceType:
+    Type: String
+    Default: t3.large
+  AmiId:
+    Type: String
+    Default: ''
+    Description: Leave blank to use latest AL2023 via SSM parameter
+  BackupBucketName:
+    Type: String
+    Default: ''
+    Description: Optional S3 bucket name for uploads (no s3://, no path)
+  BackupBucketPrefix:
+    Type: String
+    Default: tf-backup/backups/
+    Description: Prefix inside the bucket (end with /). Ignored if bucket empty.
+  KmsKeyArn:
+    Type: String
+    Default: ''
+    Description: Optional KMS key ARN (us-east-1) for SSE-KMS or encrypted EBS
+  RootVolumeSizeGiB:
+    Type: Number
+    Default: 20
+    MinValue: 8
+  RestrictToRegion:
+    Type: String
+    Default: us-east-1
+    Description: Inline guardrail on the role (deny API calls outside this region)
+
+Conditions:
+  UseAmiParam: !Not [!Equals [!Ref AmiId, ""]]
+  UseS3:       !Not [!Equals [!Ref BackupBucketName, ""]]
+  UseKms:      !Not [!Equals [!Ref KmsKeyArn, ""]]
+
+Resources:
+  HelperRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub '${EnvironmentName}-helper-role'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { Service: ec2.amazonaws.com }
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      Policies:
+        - PolicyName: helper-ec2-ops
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: Ec2RescueOps
+                Effect: Allow
+                Action:
+                  - ec2:AttachVolume
+                  - ec2:DetachVolume
+                  - ec2:Describe*
+                  - ec2:CreateSnapshot
+                  - ec2:CreateTags
+                Resource: "*"
+                Condition:
+                  StringEquals:
+                    aws:RequestedRegion: !Ref RestrictToRegion
+        - !If
+          - UseS3
+          - PolicyName: helper-s3
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Sid: ListBucketPrefix
+                  Effect: Allow
+                  Action: s3:ListBucket
+                  Resource: !Sub 'arn:${AWS::Partition}:s3:::${BackupBucketName}'
+                  Condition:
+                    StringLike:
+                      s3:prefix: !Ref BackupBucketPrefix
+                - Sid: PutGetWithinPrefix
+                  Effect: Allow
+                  Action:
+                    - s3:PutObject
+                    - s3:GetObject
+                  Resource: !Sub 'arn:${AWS::Partition}:s3:::${BackupBucketName}/${BackupBucketPrefix}*'
+          - !Ref AWS::NoValue
+        - !If
+          - UseKms
+          - PolicyName: helper-kms
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Sid: UseSpecificKmsKey
+                  Effect: Allow
+                  Action:
+                    - kms:Encrypt
+                    - kms:Decrypt
+                    - kms:ReEncrypt*
+                    - kms:GenerateDataKey*
+                    - kms:DescribeKey
+                    - kms:CreateGrant
+                  Resource: !Ref KmsKeyArn
+                  Condition:
+                    StringEquals:
+                      aws:RequestedRegion: !Ref RestrictToRegion
+          - !Ref AWS::NoValue
+      Tags:
+        - Key: Name
+          Value: !Sub '${EnvironmentName}-helper-role'
+
+  HelperInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      InstanceProfileName: !Sub '${EnvironmentName}-helper-instance-profile'
+      Roles: [ !Ref HelperRole ]
+
+  HelperInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      IamInstanceProfile: !Ref HelperInstanceProfile
+      InstanceType: !Ref InstanceType
+      ImageId: !If
+        - UseAmiParam
+        - !Ref AmiId
+        - '{{resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64:1}}'
+      NetworkInterfaces:
+        - DeviceIndex: 0
+          AssociatePublicIpAddress: true
+          SubnetId: !Ref SubnetId
+          GroupSet: [ !Ref SecurityGroupId ]
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs:
+            VolumeSize: !Ref RootVolumeSizeGiB
+            VolumeType: gp3
+            Encrypted: true
+      MetadataOptions:
+        HttpTokens: required
+        HttpEndpoint: enabled
+        HttpPutResponseHopLimit: 1
+      Tags:
+        - Key: Name
+          Value: !Sub '${EnvironmentName}-helper'
+      UserData:
+        Fn::Base64: !Sub |
+          #!/usr/bin/env bash
+          set -euxo pipefail
+          dnf -y update
+          dnf -y install jq nvme-cli lvm2 xfsprogs btrfs-progs mdadm cloud-utils-growpart rsync tar pigz pv
+          install -d -m 0755 /opt/helper
+
+          cat >/opt/helper/ebs-map.sh << 'EOS'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          VID="$1"
+          for d in /dev/nvme*n*; do
+            [ -e "$d" ] || continue
+            if command -v ebsnvme-id >/dev/null 2>&1; then
+              if ebsnvme-id "$d" 2>/dev/null | grep -q "Volume ID: $VID"; then
+                echo "$d"; exit 0
+              fi
+            fi
+          done
+          echo "Not found: $VID" >&2; exit 1
+          EOS
+          chmod +x /opt/helper/ebs-map.sh
+
+          cat >/opt/helper/mount-readonly.sh << 'EOS'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          DEV="$1"
+          MP="/mnt/recovery"
+          if [ $# -ge 2 ] && [ -n "$2" ]; then MP="$2"; fi
+          mkdir -p "$MP"
+          mount -o ro,noload "$DEV" "$MP" 2>/dev/null || mount -o ro "$DEV" "$MP"
+          echo "Mounted $DEV on $MP (read-only)."
+          EOS
+          chmod +x /opt/helper/mount-readonly.sh
+
+          cat >/opt/helper/sha256-tree.sh << 'EOS'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          SRC="/mnt/recovery"
+          OUT="/tmp/checksums.sha256"
+          if [ $# -ge 1 ] && [ -n "$1" ]; then SRC="$1"; fi
+          if [ $# -ge 2 ] && [ -n "$2" ]; then OUT="$2"; fi
+          (cd "$SRC" && find . -type f -print0 | xargs -0 -n1 sha256sum) | tee "$OUT"
+          echo "Wrote checksums to $OUT"
+          EOS
+          chmod +x /opt/helper/sha256-tree.sh
+
+          cat >/opt/helper/s3-upload.sh << 'EOS'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          FILE="$1"
+          # CFN will substitute these two:
+          DEFAULT_BUCKET="${BackupBucketName}"
+          DEFAULT_PREFIX="${BackupBucketPrefix}"
+
+          BUCKET="$DEFAULT_BUCKET"
+          KEY=""
+
+          # 2nd arg can override bucket
+          if [ $# -ge 2 ] && [ -n "$2" ]; then BUCKET="$2"; fi
+          # 3rd arg can override key; else prefix + basename(FILE)
+          if [ $# -ge 3 ] && [ -n "$3" ]; then
+            KEY="$3"
+          else
+            BASENAME="$(basename "$FILE")"
+            KEY="$DEFAULT_PREFIX$BASENAME"
+          fi
+
+          if [ -z "$BUCKET" ]; then
+            echo "BackupBucketName not set; skipping upload." >&2; exit 2
+          fi
+
+          aws s3 cp "$FILE" "s3://$BUCKET/$KEY"
+          echo "Uploaded s3://$BUCKET/$KEY"
+          EOS
+          chmod +x /opt/helper/s3-upload.sh
+
+Outputs:
+  HelperInstanceId:
+    Description: Instance ID
+    Value: !Ref HelperInstance
+  HelperRoleArn:
+    Description: IAM Role ARN
+    Value: !GetAtt HelperRole.Arn
+  HelperInstanceProfileName:
+    Description: Instance profile name
+    Value: !Ref HelperInstanceProfile

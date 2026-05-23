@@ -1,0 +1,6 @@
+{
+  "PermissionSetArn": "arn:aws:sso:::permissionSet/ssoins-6684b776b34e737d/ps-d40740904281e333",
+  "Describe": {
+    "Name": "Architect-us1-RegionLocked",
+    "PermissionSetArn": "arn:aws:sso:::permissionSet/ssoins-6684b776b34e737d/ps-d40740904281e333",
+    "CreatedDate": 

@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="02 Splitter" type="PythonConfigurationType" factoryName="Python">
+    <module name="aws-stack-export" />
+    <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cfn_splitter.py" />
+    <option name="PARAMETERS" value="--input ./results/exported_stack.yaml --outdir ./results/split" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <option name="ADD_CONTENT_ROOTS" value="true" />
+    <option name="ADD_SOURCE_ROOTS" value="true" />
+    <option name="EMULATE_TERMINAL" value="false" />
+    <option name="MODULE_MODE" value="false" />
+    <method v="2" />
+  </configuration>
+</component>

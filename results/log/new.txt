@@ -1,0 +1,45 @@
+
+2025-11-09 10:54:26 | backup_orchestrator | INFO     | ===============================================================================
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |  IaacTools Backup Orchestrator — Execution Context
+2025-11-09 10:54:26 | backup_orchestrator | INFO     | -------------------------------------------------------------------------------
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |   Profile ........: architect
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |   Region .........: us-east-2
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |   Simulation .....: True
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |   Run ID .........: 20251109_135426
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |   Config file ....: /Users/teotonio/Projetos/IaaC/iaactools/codebase/conf/orchestrator/orchestrator-simulate.yaml
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |   Log file .......: /Users/teotonio/Projetos/IaaC/results/simulate/audit.log
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |   Manifest file ..: /Users/teotonio/Projetos/IaaC/results/simulate/manifest_20251109_135426.json
+2025-11-09 10:54:26 | backup_orchestrator | INFO     | ===============================================================================
+2025-11-09 10:54:26 | backup_orchestrator | INFO     | [CONFIG] LOADED
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |     Path : /Users/teotonio/Projetos/IaaC/iaactools/codebase/conf/orchestrator/orchestrator-simulate.yaml
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |     Keys :
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - _config_path
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - backup_type
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - dry_run
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - ebs_backup
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - home_region
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - keep_going
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - log_dir
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - log_level
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - preview
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - profile
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - region
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - s3_upload
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |        - simulate
+2025-11-09 10:54:26 | backup_orchestrator | INFO     |  PHASE0 — STARTING GLOBAL AWS ENVIRONMENT DISCOVERY
+2025-11-09 10:54:26 | backup_orchestrator | INFO     | ──────────────────────────────────────────────────────────────────────
+2025-11-09 10:54:26 | backup_orchestrator | INFO     | === Phase 0: AWS Account + Region Discovery (us-east-2) ===
+2025-11-09 10:54:28 | backup_orchestrator | INFO     | Instance i-00981d86938fe5dea — Name: tf_bastion_server
+2025-11-09 10:54:28 | backup_orchestrator | INFO     | Instance i-0ff77c25c4c372728 — Name: tf-reverseProxy
+2025-11-09 10:54:28 | backup_orchestrator | INFO     | Instance i-0939d291826277800 — Name: tf-prod-mysql-1
+2025-11-09 10:54:28 | backup_orchestrator | INFO     | Instance i-0630cf3424a3f3b1a — Name: tf-webserver-1
+2025-11-09 10:54:28 | backup_orchestrator | INFO     | Instance i-028b660abc1f3482b — Name: tf-fastapiserver-debian-12-1
+2025-11-09 10:54:28 | backup_orchestrator | INFO     | Instance i-0971b9497671c1067 — Name: tf-apiserver-debian-12-1
+2025-11-09 10:54:28 | backup_orchestrator | INFO     | Instance i-00207de7bcc21ccab — Name: tf-webserver-debian-12-1
+2025-11-09 10:54:28 | backup_orchestrator | INFO     | Instance i-00704ef40a3b71829 — Name: tf-helper
+2025-11-09 10:54:28 | backup_orchestrator | INFO     | Instance i-031246fe36424fece — Name: tf-nodeserver-debian-13-1
+2025-11-09 10:54:29 | backup_orchestrator | INFO     | Volume vol-0b480b74c18cfd338 — Size=16GiB State=available
+2025-11-09 10:54:29 | backup_orchestrator | INFO     | Volume vol-03c3c6282800e2777 — Size=4GiB State=available
+2025-11-09 10:54:29 | backup_orchestrator | INFO     | Volume vol-0f53df7ffae90febf — Size=4GiB State=in-use
+2025-11-09 10:54:29 | backup_orchestrator | INFO     | Volume vol-0a41b31b3e557eb62 — Size=4GiB State=in-use
+2025-11-09 10:54:29 | backup_orchestrator | INFO     | Volume vol-041251b41149acb03 — Size=4GiB State=in-use

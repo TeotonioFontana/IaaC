@@ -1,0 +1,78 @@
+SESSION_START
+Project: backup_orchestrator (or <your pkg>)
+Goal: Make the code 100% Symbiotic-compliant without changing business purpose.
+Non-goals: No feature creep, no logic changes, no output semantics changes beyond the envelope.
+Actions:
+  1) Treat the attached ZIP as canonical. Do not modify anything yet.
+  2) Apply session_prompt.md rules.
+  3) Run static audit: tools/symbiotic_checks.py on the package.
+  4) Report: concise JSON summary (counts by rule), top 20 hotspots, and a fix plan.
+  5) Wait for my single word: "Proceed".
+Constraints:
+  - Enforce return envelope via decorator.
+  - Args documented + ranges/choices/patterns.
+  - Static per-key types in data.
+  - No cross-package calls (except `common`).
+  - No A↔B bouncing calls.
+Deliverables for the "Proceed" phase:
+  - Full zipped code drop (canonical replacement).
+  - A changelog + unified diffs.
+  - A post-fix audit showing 0 errors, 0 warnings (or list remaining warnings with rationale).
+END
+
+
+-_____________________________________________________________________________________________________________________________
+
+What I’ll Do (deterministic flow)
+
+Ingest & Freeze
+
+Mark your ZIP as canonical. No edits yet.
+
+Audit
+
+Run python tools/symbiotic_checks.py --root <pkg> --pkg-top <pkg>
+
+Produce a JSON report (errors/warnings) + hotspots list (files/functions with multiple hits).
+
+Fix Plan (before touching code)
+
+Map issues → fixes, grouped by rule:
+
+Envelope: add result_envelope.enveloped decorator, unify returns to {data:{...}}.
+
+Arg docs: add docstrings with types + ranges/choices/patterns.
+
+Static types: normalize data key types across all paths.
+
+Cross-package: move shared helpers into common/ (or inline) and update imports.
+
+Bouncing calls: extract shared logic into a third function or re-layer to break cycles.
+
+Call out any ambiguous cases (e.g., missing type hints) and propose conservative defaults.
+
+Proceed (only after your OK)
+
+Apply automated refactors:
+
+Insert decorator imports + @enveloped(schema=...).
+
+Generate minimal schemas from type hints / defaults / regexes; fill missing with strict placeholders you can refine later.
+
+Rewrite returns to envelope; preserve payload under stable keys.
+
+Add/adjust docstrings (Google or NumPy style).
+
+Create common/ if needed; move utilities; fix imports.
+
+Break A↔B loops by extracting to common or introducing a coordinator.
+
+Run audit again → target 0 errors. Warnings should be driven to 0 unless you explicitly accept some (e.g., legacy APIs pending docs).
+
+Verification Pack
+
+Zip full code (canonical replacement).
+
+Include: CHANGELOG.md, unified diffs, and the final audit JSON.
+
+(Optional) Add smoke tests for a few critical functions: happy/validation/exception paths.

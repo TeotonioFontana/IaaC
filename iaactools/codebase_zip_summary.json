@@ -1,0 +1,18 @@
+{
+  "zip_path": "/Users/teotonio/Projetos/IaaC/iaactools/codebase.zip",
+  "total_entries": 120,
+  "dirs_count": 12,
+  "files_count": 108,
+  "top_level": [
+    "__MACOSX",
+    "codebase"
+  ],
+  "package_roots": [
+    "codebase",
+    "codebase/ebs_backup_pkg",
+    "codebase/orchestrator",
+    "codebase/orchestrator/phases",
+    "codebase/recovery_audit_pkg",
+    "codebase/recovery_orchestrator"
+  ]
+}

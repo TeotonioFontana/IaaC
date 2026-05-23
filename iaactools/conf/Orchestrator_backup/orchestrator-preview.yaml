@@ -1,0 +1,30 @@
+profile: architect
+source_region: us-east-2
+home_region: us-east-2
+dest_region: 
+tools_dir: /Users/teotonio/Projetos/IaaC/iaactools
+out_root:  /Users/teotonio/Projetos/IaaC/iaactools
+
+# Identity Center
+instance_arn: arn:aws:sso:::instance/ssoins-6684b776b34e737d
+identity_store_id: d-9a671b8524
+
+# Assume read-only role for IDC
+assume: arn:aws:iam::212533511020:role/SSOExportReadOnly
+assume_sts_region: us-east-1
+
+stack_name: tf-stack
+
+enabled_modules:
+  - sso_exporter
+  - cfn_exporter
+  - cfn_splitter
+  - ebs_backup
+
+enable_ebs: false
+enable_ami: false
+
+# safety mode
+preview: true
+simulate: false
+keep_going: false

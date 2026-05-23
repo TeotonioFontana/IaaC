@@ -1,0 +1,11 @@
+{
+  "AccountId": "212533511020",
+  "PermissionSetArn": "arn:aws:sso:::permissionSet/ssoins-6684b776b34e737d/ps-d40740904281e333",
+  "PermissionSetName": "Architect-us1-RegionLocked",
+  "Assignments": [
+    {
+      "PrincipalType": "USER",
+      "PrincipalId": "e1cb05e0-b0c1-70e8-19d5-ca29bb7f3e16"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "Count": 2,
+  "Items": [
+    {
+      "Arn": "arn:aws:sso:::permissionSet/ssoins-6684b776b34e737d/ps-d40740904281e333",
+      "Name": "Architect-us1-RegionLocked",
+      "File": "Architect-us1-RegionLocked__9bd09d47.json"
+    },
+    {
+      "Arn": "arn:aws:sso:::permissionSet/ssoins-6684b776b34e737d/ps-891851fa010ed2ac",
+      "Name": "ReadOnlyAccess",
+      "File": "ReadOnlyAccess__1d202db3.json"
+    }
+  ]
+}

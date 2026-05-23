@@ -1,0 +1,52 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyNonTLS",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::212533511020-tf-iaac/tf-backup",
+        "arn:aws:s3:::212533511020-tf-iaac/tf-backup/*"
+      ],
+      "Condition": { "Bool": { "aws:SecureTransport": "false" } }
+    },
+    {
+      "Sid": "AllowHelperRoleOnly",
+      "Effect": "Allow",
+      "Principal": { "AWS": "YOUR_HELPER_ROLE_ARN" },
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::212533511020-tf-iaac/tf-backup",
+        "arn:aws:s3:::212533511020-tf-iaac/tf-backup/*"
+      ]
+    },
+    {
+      "Sid": "RequireSSEKMS",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::212533511020-tf-iaac/tf-backup/*",
+      "Condition": {
+        "StringNotEquals": { "s3:x-amz-server-side-encryption": "aws:kms" },
+        "Null": { "s3:x-amz-server-side-encryption": "false" }
+      }
+    },
+    {
+      "Sid": "RequireSpecificKey",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::212533511020-tf-iaac/tf-backup/*",
+      "Condition": {
+        "StringNotEquals": { "s3:x-amz-server-side-encryption-aws-kms-key-id": "arn:aws:kms:us-east-1:212533511020:key/5ef4a1ff-0e31-4bc5-888e-85801a14e753" },
+        "Null": { "s3:x-amz-server-side-encryption-aws-kms-key-id": "false" }
+      }
+    }
+  ]
+}

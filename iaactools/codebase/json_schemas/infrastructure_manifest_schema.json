@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://iaac-recovery-suite/json_schemas/infrastructure_manifest_schema.json",
+  "title": "Infrastructure Manifest Schema",
+  "description": "Defines infrastructure snapshot including EBS, snapshots, S3 artifacts, and KMS associations.",
+  "$comment": "v1.2.0 — added ShadowKeyArn and reference to key_escrow_manifest for improved KMS resilience.",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "type": "string", "default": "1.2.0" },
+        "generated_at": { "type": "string", "format": "date-time" },
+        "owner": { "type": "string" }
+      },
+      "required": ["schema_version", "owner"]
+    },
+    "AccountId": { "type": "string", "pattern": "^\\d{12}$" },
+    "Region": { "type": "string" },
+
+    "Volumes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "VolumeId": { "type": "string" },
+          "SizeGiB": { "type": "integer" },
+          "Encrypted": { "type": "boolean" },
+          "KmsKeyId": { "type": ["string", "null"] },
+          "ShadowKeyArn": {
+            "type": ["string", "null"],
+            "$comment": "Shadow KMS ARN used for dual encryption during backup."
+          },
+          "VolumeType": { "type": "string" },
+          "IOPS": { "type": ["integer", "null"] },
+          "Throughput": { "type": ["integer", "null"] },
+          "AZ": { "type": "string" }
+        },
+        "required": ["VolumeId", "SizeGiB", "VolumeType"]
+      }
+    },
+
+    "Snapshots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "SnapshotId": { "type": "string" },
+          "SrcVolumeId": { "type": "string" },
+          "Encrypted": { "type": ["boolean", "null"] },
+          "KmsKeyId": { "type": ["string", "null"] },
+          "ShadowKeyArn": {
+            "type": ["string", "null"],
+            "$comment": "Shadow key used for re-encryption if primary KMS fails."
+          }
+        },
+        "required": ["SnapshotId", "SrcVolumeId"]
+      }
+    },
+
+    "S3Artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Bucket": { "type": "string" },
+          "Key": { "type": "string" },
+          "ChecksumSHA256": { "type": ["string", "null"] }
+        },
+        "required": ["Bucket", "Key"]
+      }
+    },
+
+    "key_escrow_reference": {
+      "type": ["string", "null"],
+      "$comment": "S3 or path reference to the key_escrow_manifest.json used in this run."
+    },
+
+    "kms_policies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "KeyId": { "type": "string" },
+          "Arn": { "type": ["string", "null"] },
+          "PolicyDocument": { "type": ["object", "null"] }
+        },
+        "required": ["KeyId"]
+      }
+    }
+  },
+  "required": ["meta", "AccountId", "Region", "Volumes"],
+  "additionalProperties": false
+}

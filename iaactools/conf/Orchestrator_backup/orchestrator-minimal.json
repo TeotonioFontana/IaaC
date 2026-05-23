@@ -1,0 +1,17 @@
+{
+  "profile": "architect",
+  "source_region": "us-east-2",
+  "home_region": "us-east-2",
+  "tools_dir": "/Users/teotonio/Projetos/IaaC/iaactools",
+  "out_root": "/Users/teotonio/Projetos/IaaC/iaactools",
+  "instance_arn": "arn:aws:sso:::instance/ssoins-6684b776b34e737d",
+  "identity_store_id": "d-9a671b8524",
+  "assume": "arn:aws:iam::212533511020:role/SSOExportReadOnly",
+  "assume_sts_region": "us-east-1",
+  "enabled_modules": [
+    "sso_exporter",
+    "cfn_exporter",
+    "cfn_splitter"
+  ],
+  "preview": true
+}

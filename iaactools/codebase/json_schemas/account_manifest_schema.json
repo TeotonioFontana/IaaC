@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://iaac-recovery-suite/json_schemas/account_manifest_schema.json",
+  "title": "Account Manifest Schema",
+  "description": "Captures AWS account configuration, IAM inventory, quotas, and security posture.",
+  "$comment": "v1.1.0 — added iam_policies, iam_credentials, iam_groups and trust_relationships so logical IAM deletions become fully recoverable.",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "type": "string", "default": "1.1.0" },
+        "generated_at": { "type": "string", "format": "date-time" },
+        "owner": { "type": "string" }
+      },
+      "required": ["schema_version", "owner"]
+    },
+
+    "AccountId": { "type": "string", "pattern": "^\\d{12}$" },
+    "AccountAlias": { "type": ["string", "null"] },
+    "RootEmail": { "type": ["string", "null"] },
+    "SupportPlan": { "type": ["string", "null"] },
+
+    "Quotas": {
+      "type": "object",
+      "$comment": "Service quotas snapshot — free-form because AWS adds new ones frequently.",
+      "additionalProperties": { "type": ["integer", "string", "null"] }
+    },
+
+    "Security": {
+      "type": "object",
+      "properties": {
+        "GuardDutyEnabled": { "type": ["boolean", "null"] },
+        "SecurityHubEnabled": { "type": ["boolean", "null"] },
+        "CloudTrailTrails": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "MFAEnforced": { "type": ["boolean", "null"] }
+      }
+    },
+
+    "Networking": {
+      "type": "object",
+      "properties": {
+        "DefaultVPCs": { "type": "array", "items": { "type": "string" } },
+        "TransitGateways": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "iam_policies": {
+      "type": "array",
+      "$comment": "Full policy bodies, so we can re-create a deleted policy/role safely.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "PolicyName": { "type": "string" },
+          "Document": { "type": "object" },
+          "Checksum": { "type": ["string", "null"] },
+          "LastModified": { "type": ["string", "null"], "format": "date-time" }
+        },
+        "required": ["PolicyName", "Document"]
+      }
+    },
+
+    "iam_credentials": {
+      "type": "array",
+      "$comment": "Per-user auth facts — enough to re-create their access posture.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "UserName": { "type": "string" },
+          "AccessKeyIds": { "type": "array", "items": { "type": "string" } },
+          "MFADevices": { "type": "array", "items": { "type": "string" } },
+          "PasswordLastUsed": { "type": ["string", "null"] },
+          "ConsoleAccess": { "type": ["boolean", "null"] }
+        },
+        "required": ["UserName"]
+      }
+    },
+
+    "iam_groups": {
+      "type": "array",
+      "$comment": "Group → members → attached policies. This fixes group-deletion partial recoveries.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "GroupName": { "type": "string" },
+          "Members": { "type": "array", "items": { "type": "string" } },
+          "AttachedPolicies": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["GroupName"]
+      }
+    },
+
+    "trust_relationships": {
+      "type": "array",
+      "$comment": "Explicit AssumeRolePolicyDocument copies for cross-account recovery.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "RoleName": { "type": "string" },
+          "AssumeRolePolicyDocument": { "type": "object" },
+          "TrustedEntities": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["RoleName", "AssumeRolePolicyDocument"]
+      }
+    },
+
+    "LinkedManifests": {
+      "type": "array",
+      "$comment": "Pointer to heavy-weight manifests like iam_manifest.json, when IAM is too big.",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["meta", "AccountId"],
+  "additionalProperties": false
+}

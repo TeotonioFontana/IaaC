@@ -1,0 +1,28 @@
+# =====================================================================
+# orchestrator-simulate.yaml — Simulation Mode Configuration
+# =====================================================================
+# Purpose: Run full orchestrator in read-only / dry-run mode.
+# No resources are modified; actions are logged for verification.
+# =====================================================================
+
+profile: architect
+region: us-east-2
+home_region: us-east-2
+simulate: true
+preview: false
+keep_going: false
+dry_run: true
+
+backup_type: snapshot
+s3_upload: false
+
+ebs_backup:
+  region: us-east-2
+  tags_filter:
+    Backup: "true"
+  snapshot_options:
+    description_prefix: "SimulateBackup"
+    retain_days: 0
+
+log_level: DEBUG
+log_dir: /Users/teotonio/Projetos/IaaC/results/simulate

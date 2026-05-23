@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Backup Orchestrator Configuration",
+  "type": "object",
+  "required": ["backup", "orchestrator", "logging"],
+  "properties": {
+    "backup": {
+      "type": "object",
+      "required": ["profile", "region", "target_bucket", "base_prefix", "mode"],
+      "properties": {
+        "profile": { "type": "string" },
+        "region": { "type": "string" },
+        "target_bucket": { "type": "string" },
+        "base_prefix": { "type": "string" },
+        "mode": { "type": "string", "enum": ["execute", "verify", "dryrun"] },
+        "simulate": { "type": "boolean" },
+        "run_id": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "orchestrator": {
+      "type": "object",
+      "required": ["helper_instance_id", "full_volume", "snapshot", "checksum"],
+      "properties": {
+        "helper_instance_id": { "type": "string" },
+        "full_volume": { "type": "boolean" },
+        "snapshot": { "type": "boolean" },
+        "checksum": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "logging": {
+      "type": "object",
+      "required": ["level", "format", "log_file"],
+      "properties": {
+        "level": { "type": "string", "enum": ["DEBUG", "INFO", "WARNING", "ERROR"] },
+        "format": { "type": "string", "enum": ["text", "json"] },
+        "log_file": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
