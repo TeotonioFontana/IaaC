@@ -1,0 +1,94 @@
+region: us-east-2
+account_id: "212533511020"
+instance_id: i-09b159cf466411e48
+instance_role: TF_Debian_Instances
+availability_zone: us-east-2c
+
+storage:
+  encryption_by_default: true
+  filesystems:
+    - path: /
+      slug: root
+    - path: /opt/apps
+      slug: opt-apps
+    - path: /var/lib/apps
+      slug: var-lib-apps
+    - path: /var/log/apps
+      slug: var-log-apps
+    - path: /var/cache/apps
+      slug: var-cache-apps
+    - path: /Osteolab
+      slug: osteolab
+  bind_mounts:
+    - source: /opt/apps/spservicesapi/releases
+      target: /var/www/python/spservicesapi/releases
+    - source: /var/lib/apps/spservicesapi
+      target: /var/lib/spservicesapi
+    - source: /var/lib/apps/spservicesapi-canary
+      target: /var/lib/spservicesapi-canary
+    - source: /var/lib/apps/spservicesapi-fontana
+      target: /var/lib/spservicesapi-fontana
+    - source: /var/log/apps/spservicesapi-v4-legacy
+      target: /var/www/python/spservicesapi/SPServicesAPI_V4/server_config/log
+
+monitoring:
+  namespace: SPServices/Host
+  topic_arn: arn:aws:sns:us-east-2:212533511020:spservices-host-alerts
+  notification_email: teotonio@tfontana.com.br
+  thresholds:
+    - name: warning
+      percent: 70
+      period: 300
+      evaluation_periods: 3
+      datapoints_to_alarm: 3
+    - name: critical
+      percent: 80
+      period: 300
+      evaluation_periods: 2
+      datapoints_to_alarm: 2
+    - name: emergency
+      percent: 90
+      period: 60
+      evaluation_periods: 1
+      datapoints_to_alarm: 1
+
+temporary_snapshots:
+  delete_after: "2026-11-07"
+  retention_class: temporary-migration
+  ids:
+    - snap-0f98e393a0e06c447
+    - snap-0bd85f908731a649b
+    - snap-0d3fffe96dfd888b7
+    - snap-027fbf8aca99fefc3
+    - snap-05f75dbd985c22b64
+    - snap-06597f1e57722bafd
+    - snap-0ad3b0facb925be86
+    - snap-0efbc600c324b5a69
+    - snap-07f21b9a280a053f2
+    - snap-0045a1c28ecd3b435
+    - snap-08d234ee51955b0ab
+    - snap-05337762562f927a4
+    - snap-0565d73b48377dea0
+    - snap-061cf6a425912c3b7
+    - snap-0d89d4fc04eb86361
+    - snap-006e589cbaa3446d4
+    - snap-08ee15fe435a0f0e4
+    - snap-0d57497ee6fa71437
+    - snap-05d5400a8d502a507
+    - snap-09028eef09a386c5e
+    - snap-03820687ef6bdfd62
+    - snap-010cfbe20ca3a43bb
+    - snap-0f83c04173b4d9dd8
+    - snap-0aacc1c7f0a9b1b8d
+    - snap-0281014c5ba23e217
+    - snap-0cdef38c29a3ab7b4
+    - snap-008f26acbdbf2b281
+    - snap-07e35a5e6430c85bf
+    - snap-03be20bcd69497ee2
+    - snap-05138e3f12335f9dc
+    - snap-0108c7ab181cbccf0
+    - snap-064dcb26dcbe08dc7
+    - snap-0c86387c12fb69b50
+    - snap-032bba9cb7f6d5599
+    - snap-030299fa55ab11aa7
+    - snap-0cbfd55618c46f704

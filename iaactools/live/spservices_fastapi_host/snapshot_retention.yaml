@@ -1,0 +1,88 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Delete only explicitly tagged expired SPServices migration snapshots.
+
+Resources:
+  SnapshotRetentionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: DeleteExpiredTaggedSnapshots
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: ec2:DescribeSnapshots
+                Resource: '*'
+              - Effect: Allow
+                Action: ec2:DeleteSnapshot
+                Resource: !Sub arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:snapshot/*
+                Condition:
+                  StringEquals:
+                    ec2:ResourceTag/RetentionClass: temporary-migration
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !Sub arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:*
+
+  SnapshotRetentionFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Runtime: python3.13
+      Handler: index.handler
+      Role: !GetAtt SnapshotRetentionRole.Arn
+      Timeout: 60
+      Architectures: [arm64]
+      Code:
+        ZipFile: |
+          import datetime
+          import boto3
+
+          def handler(event, context):
+              today = datetime.datetime.now(datetime.timezone.utc).date()
+              ec2 = boto3.client("ec2")
+              deleted = []
+              skipped = []
+              paginator = ec2.get_paginator("describe_snapshots")
+              pages = paginator.paginate(
+                  OwnerIds=["self"],
+                  Filters=[{"Name": "tag:RetentionClass", "Values": ["temporary-migration"]}],
+              )
+              for page in pages:
+                  for snapshot in page["Snapshots"]:
+                      tags = {item["Key"]: item["Value"] for item in snapshot.get("Tags", [])}
+                      try:
+                          delete_after = datetime.date.fromisoformat(tags["DeleteAfter"])
+                      except (KeyError, ValueError):
+                          skipped.append(snapshot["SnapshotId"])
+                          continue
+                      if delete_after <= today:
+                          ec2.delete_snapshot(SnapshotId=snapshot["SnapshotId"])
+                          deleted.append(snapshot["SnapshotId"])
+              return {"deleted": deleted, "skipped": skipped, "date": today.isoformat()}
+
+  SnapshotRetentionSchedule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: Daily cleanup of explicitly tagged expired migration snapshots
+      ScheduleExpression: rate(1 day)
+      State: ENABLED
+      Targets:
+        - Arn: !GetAtt SnapshotRetentionFunction.Arn
+          Id: SnapshotRetentionFunction
+
+  SnapshotRetentionInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref SnapshotRetentionFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt SnapshotRetentionSchedule.Arn

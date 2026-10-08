@@ -1,0 +1,66 @@
+status: complete
+completed_at: "2026-10-08"
+region: us-east-2
+instance_id: i-09b159cf466411e48
+availability_zone: us-east-2c
+kms_key_alias: alias/aws/ebs
+ebs_encryption_by_default: true
+
+live_encrypted_volumes:
+  - device: /dev/xvda
+    volume_id: vol-074761ba4ca76e7a4
+    source_volume_id: vol-0ddb7095023593cd2
+    purpose: root
+  - device: /dev/xvdbg
+    volume_id: vol-0ae2b4db4c9a91d0b
+    source_volume_id: vol-041251b41149acb03
+    purpose: /opt/apps
+  - device: /dev/xvdbh
+    volume_id: vol-0e0a5cfbd6ef764b0
+    source_volume_id: vol-00753a0f5586fe58c
+    purpose: /var/log/apps
+  - device: /dev/xvdbj
+    volume_id: vol-07b29ccdf55ce8aa3
+    source_volume_id: vol-0d84b6fc2dd4fc0cf
+    purpose: /var/lib/apps
+  - device: /dev/xvdbk
+    volume_id: vol-0dae4a718e195fff4
+    source_volume_id: vol-0c23070ae698a4446
+    purpose: /var/cache/apps
+  - device: /dev/xvdbl
+    volume_id: vol-0c4d7e907be323fcc
+    source_volume_id: vol-06bff65aaa4f34c01
+    purpose: /Osteolab
+
+rollback_unencrypted_volumes:
+  retain_until: "2026-11-07"
+  ids:
+    - vol-0ddb7095023593cd2
+    - vol-041251b41149acb03
+    - vol-00753a0f5586fe58c
+    - vol-0d84b6fc2dd4fc0cf
+    - vol-0c23070ae698a4446
+    - vol-06bff65aaa4f34c01
+
+validation:
+  ec2_system_status: ok
+  ec2_instance_status: ok
+  attached_volumes_encrypted: 6
+  root_and_application_mounts: passed
+  bind_mounts: passed
+  systemd_failed_units: 0
+  spservices_default_health: passed
+  spservices_fontana_service: active
+  lexbrain_api_health: passed
+  cloudwatch_agent: active
+  cloudwatch_disk_alarms_ok: 18
+  public_home_http_status: 200
+  protected_docfinder_http_status: 303
+  protected_composer_http_status: 303
+
+notes:
+  - The first trial was rejected because its source snapshots predated the storage reorganization.
+  - The original volumes were restored immediately and passed all recovery checks.
+  - The final generation was captured with the instance stopped because an active web session existed.
+  - Twelve unused intermediate encrypted volumes were deleted after final validation.
+
